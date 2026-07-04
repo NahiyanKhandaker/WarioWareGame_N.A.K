@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://x37ogllew5qs"]
+
+[ext_resource type="Texture2D" uid="uid://bxsxnvfjbridg" path="res://Assets/mario.png" id="1_v0iea"]
+
+[sub_resource type="GDScript" id="GDScript_ihae0"]
+resource_name = "moving"
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 300.0
+const JUMP_VELOCITY = -700.0
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ryxrj"]
+radius = 60.074955
+
+[node name="Player" type="CharacterBody2D" unique_id=1877153333]
+script = SubResource("GDScript_ihae0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1141345923]
+position = Vector2(628.00006, 483)
+scale = Vector2(0.36380598, 0.28682715)
+texture = ExtResource("1_v0iea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1601603693]
+position = Vector2(628, 479)
+shape = SubResource("CircleShape2D_ryxrj")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1725745895]
+position = Vector2(629, 484)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=487850055]
+position = Vector2(-1, -5)
+shape = SubResource("CircleShape2D_ryxrj")

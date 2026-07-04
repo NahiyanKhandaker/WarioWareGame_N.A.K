@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://drjnwodke0q5r"]
+
+[ext_resource type="Texture2D" uid="uid://cu27bbt0fsfcc" path="res://Assets/background2.jpg" id="1_psbsm"]
+[ext_resource type="Texture2D" uid="uid://clmvhhm8t5i6t" path="res://Assets/garlic.png" id="2_he4ew"]
+[ext_resource type="PackedScene" uid="uid://d2im67nsi2cdx" path="res://Scenes/minigame_timer.tscn" id="3_l4g8r"]
+
+[node name="minigame_2" type="Node2D" unique_id=1150639295]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1290551903]
+repeat_size = Vector2(1000, 0)
+autoscroll = Vector2(100, 0)
+
+[node name="Background" type="TextureRect" parent="Parallax2D" unique_id=1246710326]
+offset_right = 1150.0
+offset_bottom = 647.0
+texture = ExtResource("1_psbsm")
+
+[node name="Button_1" type="TextureButton" parent="." unique_id=812725772]
+offset_left = 89.0
+offset_top = 29.0
+offset_right = 589.0
+offset_bottom = 529.0
+scale = Vector2(0.3533333, 0.22666672)
+texture_normal = ExtResource("2_he4ew")
+
+[node name="Button_2" type="TextureButton" parent="." unique_id=1871029470]
+offset_left = 371.0
+offset_top = 191.0
+offset_right = 871.0
+offset_bottom = 691.0
+scale = Vector2(0.3533333, 0.22666672)
+texture_normal = ExtResource("2_he4ew")
+
+[node name="Button_3" type="TextureButton" parent="." unique_id=1446482598]
+offset_left = 696.00006
+offset_top = 414.0
+offset_right = 1196.0
+offset_bottom = 914.0
+scale = Vector2(0.3533333, 0.22666672)
+texture_normal = ExtResource("2_he4ew")
+
+[node name="Button_4" type="TextureButton" parent="." unique_id=1046082455]
+offset_left = 139.0
+offset_top = 395.0
+offset_right = 639.0
+offset_bottom = 895.0
+scale = Vector2(0.3533333, 0.22666672)
+texture_normal = ExtResource("2_he4ew")
+
+[node name="minigameTimer" parent="." unique_id=1173395646 instance=ExtResource("3_l4g8r")]
+position = Vector2(627, 74)

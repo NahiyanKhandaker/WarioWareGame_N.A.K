@@ -14,6 +14,10 @@ config/name="WarioWareGame"
 run/main_scene="uid://dm5m3ucvdieqc"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 
+[autoload]
+
+Globe="*uid://dwy6r6ugjhhwd"
+
 [display]
 
 window/stretch/mode="viewport"
