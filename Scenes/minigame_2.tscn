@@ -9,6 +9,7 @@ resource_name = "main"
 script/source = "extends Node2D
 @onready var themed_timer: Node2D = $minigameTimer
 @onready var garlicClicked: RichTextLabel = $GarlicClickedCounter
+@onready var background: Parallax2D = $Parallax2D
 
 var buttons_pressed := 0
 var timer_end = false
@@ -21,6 +22,9 @@ func _ready() -> void:
 	timer_end = true 
 
 func _process(delta: float) -> void:
+	
+	if Globe.rollingBackground == false:
+		background.process_mode = Node.PROCESS_MODE_DISABLED
 	
 	if buttons_pressed > 0:
 		garlicClicked.text = \"Garlic Clicked: \" + str(buttons_pressed) + \"/5\"

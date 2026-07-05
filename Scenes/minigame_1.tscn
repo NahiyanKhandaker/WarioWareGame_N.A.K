@@ -10,6 +10,7 @@ resource_name = "main"
 script/source = "extends Node2D
 @onready var themed_timer: Node2D = $minigameTimer
 @onready var garlicCounter: RichTextLabel = $GarlicCounter
+@onready var background: Parallax2D = $Parallax2D
 # ^^^ You dragged this in the scene by the way 
 
 
@@ -30,6 +31,10 @@ func _ready() -> void:
 	timer_end = true # now we're saying \"oh ye you ran out of time\"
 
 func _process(delta: float) -> void: # running every frame brochacho
+	
+	if Globe.rollingBackground == false:
+		background.process_mode = Node.PROCESS_MODE_DISABLED
+		
 	
 	if garlic_collected == 3: # the double equals is just an argument asking if it's the same, with \"=\" it'll give an error
 		if Globe.minigames_done > 3: # we access a global script and see how many minigames have been compeleted

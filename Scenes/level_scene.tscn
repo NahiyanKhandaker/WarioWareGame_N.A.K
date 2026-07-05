@@ -12,6 +12,7 @@ script/source = "extends Node2D
 @onready var garlic_3: TextureRect = $GarlicContainer/Garlic3
 @onready var garlic_4: TextureRect = $GarlicContainer/Garlic4
 @onready var level: RichTextLabel = $Level
+@onready var lives: RichTextLabel = $Lives
 @onready var timer: RichTextLabel = $Timer
 
 var time
@@ -55,7 +56,11 @@ func _process(delta: float) -> void: # runs EVERY FRAME
 			garlic_container.hide() # just hides everything
 	
 	timer.text = str(time) # make ths text reflect the value of the time variable. this makes names easier. the str() converts the int to a String
+	lives.text = \"Lives: \" + str(Globe.lives)
 	level.text = \"Level \" + str(Globe.minigames_done) # this tells you want minigame you're on using concatenation (google the word yo)
+	
+	if Globe.lives == 0:
+		get_tree().change_scene_to_file(\"res://scenes/defeat_screen.tscn\")
 
 func Timer(start_time: float): # making a new function for timer countdown!
 	# we want the timer to go down, and when it reaches 0 it transitions 
@@ -117,13 +122,24 @@ expand_mode = 2
 
 [node name="Level" type="RichTextLabel" parent="." unique_id=1007441246]
 clip_contents = false
-offset_left = 7.0
-offset_top = 221.0
-offset_right = 1151.0
-offset_bottom = 280.0
+offset_left = 16.0
+offset_top = 442.0
+offset_right = 1160.0
+offset_bottom = 501.0
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 42
 text = "Level#"
+horizontal_alignment = 1
+
+[node name="Lives" type="RichTextLabel" parent="." unique_id=178521141]
+clip_contents = false
+offset_left = 5.0
+offset_top = 212.0
+offset_right = 1149.0
+offset_bottom = 271.0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/normal_font_size = 42
+text = "Lives: "
 horizontal_alignment = 1
 
 [node name="Timer" type="RichTextLabel" parent="." unique_id=1036621369]
