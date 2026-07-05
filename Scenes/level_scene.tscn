@@ -84,10 +84,11 @@ offset_bottom = 649.0
 texture = ExtResource("1_rol8n")
 
 [node name="GarlicContainer" type="HBoxContainer" parent="." unique_id=268530695]
-offset_left = 345.0
-offset_top = 73.0
-offset_right = 1041.0
+offset_left = 2.0
+offset_top = 64.0
+offset_right = 1149.0
 offset_bottom = 209.0
+alignment = 1
 
 [node name="Garlic" type="TextureRect" parent="GarlicContainer" unique_id=1828683260]
 layout_mode = 2
@@ -116,20 +117,22 @@ expand_mode = 2
 
 [node name="Level" type="RichTextLabel" parent="." unique_id=1007441246]
 clip_contents = false
-offset_left = 620.0
+offset_left = 7.0
 offset_top = 221.0
-offset_right = 770.0
+offset_right = 1151.0
 offset_bottom = 280.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 42
 text = "Level#"
+horizontal_alignment = 1
 
 [node name="Timer" type="RichTextLabel" parent="." unique_id=1036621369]
 clip_contents = false
-offset_left = 671.0
+offset_left = 2.0
 offset_top = 518.0
-offset_right = 743.0
+offset_right = 1150.0
 offset_bottom = 576.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 42
 text = "0.0"
+horizontal_alignment = 1

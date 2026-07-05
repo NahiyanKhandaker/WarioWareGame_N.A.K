@@ -36,9 +36,12 @@ func wait(seconds: float) -> void: # write this simple function out for wait!
 script = SubResource("GDScript_ryxrj")
 
 [node name="timer" type="RichTextLabel" parent="." unique_id=1261699688]
+clip_contents = false
 offset_left = 180.0
 offset_top = 132.0
 offset_right = 909.0
 offset_bottom = 470.0
 theme_override_constants/outline_size = 10
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 40
+text = "0:00
+"

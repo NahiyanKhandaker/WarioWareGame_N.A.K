@@ -1,51 +1,156 @@
 [gd_scene format=3 uid="uid://drjnwodke0q5r"]
 
-[ext_resource type="Texture2D" uid="uid://cu27bbt0fsfcc" path="res://Assets/background2.jpg" id="1_psbsm"]
+[ext_resource type="Texture2D" uid="uid://bvp6yhwre6n3w" path="res://Assets/background3.jpg" id="1_l4g8r"]
 [ext_resource type="Texture2D" uid="uid://clmvhhm8t5i6t" path="res://Assets/garlic.png" id="2_he4ew"]
 [ext_resource type="PackedScene" uid="uid://d2im67nsi2cdx" path="res://Scenes/minigame_timer.tscn" id="3_l4g8r"]
 
+[sub_resource type="GDScript" id="GDScript_rfxq2"]
+resource_name = "main"
+script/source = "extends Node2D
+@onready var themed_timer: Node2D = $minigameTimer
+@onready var garlicClicked: RichTextLabel = $GarlicClickedCounter
+
+var buttons_pressed := 0
+var timer_end = false
+
+func _ready() -> void:
+	
+	
+	await themed_timer.Timer(7.0)
+	#after this is completed...
+	timer_end = true 
+
+func _process(delta: float) -> void:
+	
+	if buttons_pressed > 0:
+		garlicClicked.text = \"Garlic Clicked: \" + str(buttons_pressed) + \"/5\"
+		
+	if buttons_pressed == 5:
+		if Globe.minigames_done > 3:
+			get_tree().change_scene_to_file(\"res://scenes/done_screen.tscn\")
+		else:
+			get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
+	
+	if timer_end:
+		Globe.lives -= 1
+		Globe.minigames_done -=1
+		get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_4dmbm"]
+resource_name = "garlicClicked"
+script/source = "extends TextureButton
+@onready var parent = $\"..\"
+
+func _on_pressed() -> void: #YOU NEED TO CONNECT THIS SIGNAL FROM THE TAB NEXT TO INSPECTOR!!
+	parent.buttons_pressed += 1
+	hide()
+"
+
+[sub_resource type="GDScript" id="GDScript_l4g8r"]
+resource_name = "garlicClicked"
+script/source = "extends TextureButton
+@onready var parent = $\"..\"
+
+func _on_pressed() -> void: #YOU NEED TO CONNECT THIS SIGNAL FROM THE TAB NEXT TO INSPECTOR!!
+	parent.buttons_pressed += 1
+	hide()
+"
+
+[sub_resource type="GDScript" id="GDScript_ryxrj"]
+resource_name = "garlicClicked"
+script/source = "extends TextureButton
+@onready var parent = $\"..\"
+
+func _on_pressed() -> void: #YOU NEED TO CONNECT THIS SIGNAL FROM THE TAB NEXT TO INSPECTOR!!
+	parent.buttons_pressed += 1
+	hide()
+"
+
+[sub_resource type="GDScript" id="GDScript_dfb65"]
+resource_name = "garlicClicked"
+script/source = "extends TextureButton
+@onready var parent = $\"..\"
+
+func _on_pressed() -> void: #YOU NEED TO CONNECT THIS SIGNAL FROM THE TAB NEXT TO INSPECTOR!!
+	parent.buttons_pressed += 1
+	hide()
+"
+
 [node name="minigame_2" type="Node2D" unique_id=1150639295]
+script = SubResource("GDScript_rfxq2")
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=1290551903]
 repeat_size = Vector2(1000, 0)
 autoscroll = Vector2(100, 0)
 
 [node name="Background" type="TextureRect" parent="Parallax2D" unique_id=1246710326]
-offset_right = 1150.0
-offset_bottom = 647.0
-texture = ExtResource("1_psbsm")
+offset_right = 1445.0
+offset_bottom = 980.0
+texture = ExtResource("1_l4g8r")
 
 [node name="Button_1" type="TextureButton" parent="." unique_id=812725772]
-offset_left = 89.0
-offset_top = 29.0
-offset_right = 589.0
-offset_bottom = 529.0
+offset_left = 383.0
+offset_top = 183.0
+offset_right = 883.0
+offset_bottom = 683.0
 scale = Vector2(0.3533333, 0.22666672)
 texture_normal = ExtResource("2_he4ew")
+script = SubResource("GDScript_4dmbm")
 
 [node name="Button_2" type="TextureButton" parent="." unique_id=1871029470]
-offset_left = 371.0
-offset_top = 191.0
-offset_right = 871.0
-offset_bottom = 691.0
+offset_left = 17.0
+offset_top = 292.0
+offset_right = 517.0
+offset_bottom = 792.0
 scale = Vector2(0.3533333, 0.22666672)
 texture_normal = ExtResource("2_he4ew")
+script = SubResource("GDScript_l4g8r")
 
 [node name="Button_3" type="TextureButton" parent="." unique_id=1446482598]
-offset_left = 696.00006
-offset_top = 414.0
-offset_right = 1196.0
-offset_bottom = 914.0
+offset_left = 955.0
+offset_top = 513.0
+offset_right = 1455.0
+offset_bottom = 1013.0
 scale = Vector2(0.3533333, 0.22666672)
 texture_normal = ExtResource("2_he4ew")
+script = SubResource("GDScript_ryxrj")
 
 [node name="Button_4" type="TextureButton" parent="." unique_id=1046082455]
-offset_left = 139.0
-offset_top = 395.0
-offset_right = 639.0
-offset_bottom = 895.0
+offset_left = 316.0
+offset_top = 521.0
+offset_right = 816.0
+offset_bottom = 1021.0
 scale = Vector2(0.3533333, 0.22666672)
 texture_normal = ExtResource("2_he4ew")
+script = SubResource("GDScript_dfb65")
+
+[node name="Button_5" type="TextureButton" parent="." unique_id=324910952]
+offset_left = 771.0
+offset_top = 117.0
+offset_right = 1271.0
+offset_bottom = 617.0
+scale = Vector2(0.3533333, 0.22666672)
+texture_normal = ExtResource("2_he4ew")
+script = SubResource("GDScript_l4g8r")
 
 [node name="minigameTimer" parent="." unique_id=1173395646 instance=ExtResource("3_l4g8r")]
-position = Vector2(627, 74)
+position = Vector2(881, -137)
+
+[node name="GarlicClickedCounter" type="RichTextLabel" parent="." unique_id=821878135]
+clip_contents = false
+offset_left = 10.0
+offset_top = 7.0
+offset_right = 1144.0
+offset_bottom = 47.0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/normal_font_size = 29
+text = "Garlic Clicked: 0/5"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Button_1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="Button_1" to="Button_1" method="_on_pressed"]
+[connection signal="pressed" from="Button_2" to="Button_2" method="_on_pressed"]
+[connection signal="pressed" from="Button_3" to="Button_3" method="_on_pressed"]
+[connection signal="pressed" from="Button_4" to="Button_4" method="_on_pressed"]
+[connection signal="pressed" from="Button_5" to="Button_5" method="_on_pressed"]
