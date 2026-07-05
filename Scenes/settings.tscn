@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://qeyycsl7sxu7"]
+
+[sub_resource type="GDScript" id="GDScript_eyi13"]
+resource_name = "main"
+script/source = "extends Node2D
+
+@onready var marioButton: Button = $Mario
+@onready var luigiButton: Button = $Luigi
+
+func _ready() -> void:
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if Globe.mario == true:
+		marioButton.modulate = Color(\"89f252\")
+		luigiButton.modulate = Color(\"ff5342ff\")
+	else:
+		marioButton.modulate = Color(\"ff5342ff\")
+		luigiButton.modulate = Color(\"89f252\")
+
+
+func _on_button_pressed() -> void:
+	get_tree().change_scene_to_file(\"res://Scenes/title_screen.tscn\")
+"
+
+[sub_resource type="Gradient" id="Gradient_a627d"]
+offsets = PackedFloat32Array(0.0054054055, 0.08648649, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.4054054, 0.4054054, 0.4054054, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ryxrj"]
+gradient = SubResource("Gradient_a627d")
+fill = 2
+
+[sub_resource type="GDScript" id="GDScript_4geyq"]
+resource_name = "clickEvent"
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	Globe.mario = true
+"
+
+[sub_resource type="GDScript" id="GDScript_i44u3"]
+resource_name = "clickEvent"
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	Globe.mario = false
+"
+
+[node name="Settings" type="Node2D" unique_id=1231067869]
+script = SubResource("GDScript_eyi13")
+
+[node name="Background" type="TextureRect" parent="." unique_id=405021504]
+offset_right = 1151.0
+offset_bottom = 648.0
+texture = SubResource("GradientTexture2D_ryxrj")
+
+[node name="Title" type="RichTextLabel" parent="." unique_id=1687499224]
+offset_right = 1149.0
+offset_bottom = 101.0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/normal_font_size = 57
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="lbl1" type="RichTextLabel" parent="." unique_id=2134343756]
+offset_left = 4.0
+offset_top = 123.0
+offset_right = 1153.0
+offset_bottom = 224.0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/normal_font_size = 40
+text = "Character Select (Minigame 1):"
+
+[node name="Mario" type="Button" parent="." unique_id=232194831]
+offset_left = 619.0
+offset_top = 121.000046
+offset_right = 673.0
+offset_bottom = 152.00005
+scale = Vector2(2.1496744, 2.1820273)
+text = "Mario"
+script = SubResource("GDScript_4geyq")
+
+[node name="Luigi" type="Button" parent="." unique_id=576794111]
+offset_left = 783.0
+offset_top = 122.00001
+offset_right = 837.0
+offset_bottom = 153.0
+scale = Vector2(2.1496744, 2.1820273)
+text = "Luigi"
+script = SubResource("GDScript_i44u3")
+
+[node name="lbl2" type="RichTextLabel" parent="." unique_id=711341282]
+offset_top = 212.99995
+offset_right = 1149.0
+offset_bottom = 313.99994
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/normal_font_size = 40
+text = "Moving Background:"
+
+[node name="OnButton" type="Button" parent="." unique_id=138987936]
+offset_left = 411.0
+offset_top = 209.0
+offset_right = 465.0
+offset_bottom = 240.0
+scale = Vector2(2.1496744, 2.1820273)
+text = "ON"
+script = SubResource("GDScript_4geyq")
+
+[node name="OffButton" type="Button" parent="." unique_id=1962688222]
+offset_left = 575.0
+offset_top = 209.99995
+offset_right = 629.0
+offset_bottom = 240.99995
+scale = Vector2(2.1496744, 2.1820273)
+text = "OFF"
+script = SubResource("GDScript_i44u3")
+
+[node name="BackButton" type="Button" parent="." unique_id=527834582]
+offset_left = 1008.0
+offset_top = 10.0
+offset_right = 1134.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 29
+text = "Back"
+
+[connection signal="pressed" from="Mario" to="Mario" method="_on_pressed"]
+[connection signal="pressed" from="Luigi" to="Luigi" method="_on_pressed"]
+[connection signal="pressed" from="OnButton" to="OnButton" method="_on_pressed"]
+[connection signal="pressed" from="OffButton" to="OffButton" method="_on_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_button_pressed"]
