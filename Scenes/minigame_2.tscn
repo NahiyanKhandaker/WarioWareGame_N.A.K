@@ -30,9 +30,6 @@ func _process(delta: float) -> void:
 		garlicClicked.text = \"Garlic Clicked: \" + str(buttons_pressed) + \"/5\"
 		
 	if buttons_pressed == 5:
-		if Globe.minigames_done > 3:
-			get_tree().change_scene_to_file(\"res://scenes/done_screen.tscn\")
-		else:
 			get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
 	
 	if timer_end:

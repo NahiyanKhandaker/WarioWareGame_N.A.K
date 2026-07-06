@@ -12,22 +12,13 @@ const PipeScene = preload(\"res://Scenes/pipes.tscn\")
 
 var score = 0
 var game_over = false
-var started = false
 
 func _ready():
 	$PipeTimer.connect(\"timeout\", _on_pipe_timer_timeout)
-	$Bird.alive = false
 
 func _process(delta: float) -> void:
 	if Globe.rollingBackground == false:
 		background.process_mode = Node.PROCESS_MODE_DISABLED
-
-	if not started:
-		if Input.is_action_just_pressed(\"ui_accept\"):
-			started = true
-			$Bird.alive = true
-			$PipeTimer.start()
-		return
 
 func _on_pipe_timer_timeout():
 	var pipe = PipeScene.instantiate()
@@ -37,25 +28,15 @@ func _on_pipe_timer_timeout():
 func score_point():
 	score += 1
 	$ScoreLabel.text = \"Score: \" + str(score)
-	if score >= 10:
-		win_game()
 
-func win_game():
-	if game_over:
-		return
-	game_over = true
-	$Bird.alive = false
-	$PipeTimer.stop()
-	get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
-
-func end_game(won: bool):
-	if game_over:
-		return
+func end_game():
+ 	if game_over = true:
+	return
 	game_over = true
 	$Bird.alive = false
 	$PipeTimer.stop()
 	Globe.lives -= 1
-	Globe.minigames_done -=1
+	Globe.minigames_done -= 1
 	get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
 "
 

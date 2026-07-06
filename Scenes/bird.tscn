@@ -21,13 +21,18 @@ func _physics_process(delta):
 		velocity.y = FLAP_FORCE
 
 	move_and_slide()
+
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		if collider is StaticBody2D:
+			get_parent().end_game(false)
 "
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ryxrj"]
 radius = 34.0
 
 [node name="Bird" type="CharacterBody2D" unique_id=641051412]
-position = Vector2(461, 204)
 script = SubResource("GDScript_mcegt")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1523006120]

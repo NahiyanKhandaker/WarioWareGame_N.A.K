@@ -5,59 +5,87 @@ resource_name = "main"
 script/source = "extends Node2D
 
 const SPEED = 200.0
-var gap = 180
-var screen_width = 480
+const GAP = 200
+const SCREEN_HEIGHT = 648
 
-func setup(gap_y: float):
-	var top_height = gap_y - gap / 2
-	var bottom_y = gap_y + gap / 2
+func _ready():
+	$ScoreZone.collision_layer = 0
+	$ScoreZone.collision_mask = 1
+
+	var gap_y = randf_range(150, SCREEN_HEIGHT - 150)
+	var top_height = gap_y - GAP / 2
+	var bottom_y = gap_y + GAP / 2
+	var bottom_height = SCREEN_HEIGHT - bottom_y
+
+	var score_shape = RectangleShape2D.new()
+	score_shape.size = Vector2(10, GAP)
+	$ScoreZone/CollisionShape2D.shape = score_shape
+	$ScoreZone/CollisionShape2D.position = Vector2(40, gap_y)
 
 	$TopPipe/ColorRect.size = Vector2(80, top_height)
 	$TopPipe/ColorRect.position = Vector2(0, 0)
+	$TopPipe/CollisionShape2D.shape = RectangleShape2D.new()
 	$TopPipe/CollisionShape2D.shape.size = Vector2(80, top_height)
 	$TopPipe/CollisionShape2D.position = Vector2(40, top_height / 2)
 
-	$BottomPipe/ColorRect.size = Vector2(80, screen_width)
+	$BottomPipe/ColorRect.size = Vector2(80, bottom_height)
 	$BottomPipe/ColorRect.position = Vector2(0, bottom_y)
-	$BottomPipe/CollisionShape2D.shape.size = Vector2(80, 720 - bottom_y)
-	$BottomPipe/CollisionShape2D.position = Vector2(40, bottom_y + (720 - bottom_y) / 2)
+	$BottomPipe/CollisionShape2D.shape = RectangleShape2D.new()
+	$BottomPipe/CollisionShape2D.shape.size = Vector2(80, bottom_height)
+	$BottomPipe/CollisionShape2D.position = Vector2(40, bottom_y + bottom_height / 2)
+
+	$ScoreZone.body_entered.connect(_on_score_zone_entered)
+
+func _on_score_zone_entered(body):
+	if body.name == \"Bird\":
+		get_parent().score_point()
+		$ScoreZone.set_deferred(\"monitoring\", false)
 
 func _process(delta):
 	position.x -= SPEED * delta
-	if position.x < -100:
+	if position.x < -150:
 		queue_free()
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryxrj"]
-size = Vector2(79.5, 299)
+size = Vector2(79.5, 893)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ihae0"]
+size = Vector2(2, 174)
 
 [node name="pipes" type="Node2D" unique_id=597820951]
 script = SubResource("GDScript_41b8k")
 
 [node name="TopPipe" type="StaticBody2D" parent="." unique_id=1933050899]
-position = Vector2(129, 34)
 
 [node name="ColorRect" type="ColorRect" parent="TopPipe" unique_id=1613667060]
 offset_left = 777.0
 offset_top = 267.0
-offset_right = 857.0
-offset_bottom = 567.0
+offset_right = 777.0
+offset_bottom = 267.0
 color = Color(0.49724925, 0.7786413, 0.30427745, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TopPipe" unique_id=1019271897]
-position = Vector2(817.25, 417.5)
+position = Vector2(817.25, 715.5)
 shape = SubResource("RectangleShape2D_ryxrj")
 
 [node name="BottomPipe" type="StaticBody2D" parent="." unique_id=1035101570]
-position = Vector2(129, 34)
 
 [node name="ColorRect" type="ColorRect" parent="BottomPipe" unique_id=534791696]
 offset_left = 380.0
 offset_top = -32.0
-offset_right = 460.0
-offset_bottom = 268.0
+offset_right = 380.0
+offset_bottom = -32.0
 color = Color(0.49724925, 0.7786413, 0.30427745, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe" unique_id=484988979]
-position = Vector2(420.25, 118.5)
+position = Vector2(420.25, 408)
 shape = SubResource("RectangleShape2D_ryxrj")
+
+[node name="ScoreZone" type="Area2D" parent="." unique_id=1048995878]
+position = Vector2(40, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreZone" unique_id=1056450900]
+position = Vector2(10, 200)
+shape = SubResource("RectangleShape2D_ihae0")
