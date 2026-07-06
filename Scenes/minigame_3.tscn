@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bs8w747idxloa"]
+
+[ext_resource type="Texture2D" uid="uid://pwoqowjop6a0" path="res://Assets/background6.jpg" id="1_asmx3"]
+[ext_resource type="PackedScene" uid="uid://bqg6l0qlijx1n" path="res://Scenes/bird.tscn" id="2_h40nw"]
+
+[node name="minigame_3" type="Node2D" unique_id=1906252585]
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=797415032]
+repeat_size = Vector2(1000, 0)
+autoscroll = Vector2(100, 0)
+
+[node name="Background" type="TextureRect" parent="Parallax2D" unique_id=1360507434]
+offset_right = 1150.0
+offset_bottom = 647.0
+texture = ExtResource("1_asmx3")
+
+[node name="Bird" parent="Parallax2D" unique_id=641051412 instance=ExtResource("2_h40nw")]
+position = Vector2(495, 233)
+
+[node name="PipeTimer" type="Timer" parent="." unique_id=1993834293]
+wait_time = 1.7999999999999998
+autostart = true
+
+[node name="ScoreLabel" type="RichTextLabel" parent="." unique_id=1628493533]
+offset_left = 398.0
+offset_top = 17.0
+offset_right = 756.0
+offset_bottom = 85.0

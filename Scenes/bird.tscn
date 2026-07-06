@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://bqg6l0qlijx1n"]
+
+[ext_resource type="Texture2D" uid="uid://cteg6a64o7a4e" path="res://Assets/flappy.png" id="1_i8bdw"]
+
+[sub_resource type="GDScript" id="GDScript_mcegt"]
+resource_name = "movement"
+script/source = "extends CharacterBody2D
+
+const GRAVITY = 1200.0
+const FLAP_FORCE = -400.0
+
+var alive = true
+
+func _physics_process(delta):
+	if not alive:
+		return
+
+	velocity.y += GRAVITY * delta
+
+	if Input.is_action_just_pressed(\"ui_accept\"):
+		velocity.y = FLAP_FORCE
+
+	move_and_slide()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ryxrj"]
+radius = 34.0
+
+[node name="Bird" type="CharacterBody2D" unique_id=641051412]
+position = Vector2(461, 204)
+script = SubResource("GDScript_mcegt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1523006120]
+position = Vector2(-86.5, 238.5)
+scale = Vector2(0.20833334, 0.22522523)
+texture = ExtResource("1_i8bdw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=585719290]
+position = Vector2(-82, 240)
+shape = SubResource("CircleShape2D_ryxrj")

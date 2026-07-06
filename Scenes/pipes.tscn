@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dqnjpbwwsqfbo"]
+
+[sub_resource type="GDScript" id="GDScript_41b8k"]
+resource_name = "main"
+script/source = "extends Node2D
+
+const SPEED = 200.0
+var gap = 180
+var screen_width = 480
+
+func setup(gap_y: float):
+	var top_height = gap_y - gap / 2
+	var bottom_y = gap_y + gap / 2
+
+	$TopPipe/ColorRect.size = Vector2(80, top_height)
+	$TopPipe/ColorRect.position = Vector2(0, 0)
+	$TopPipe/CollisionShape2D.shape.size = Vector2(80, top_height)
+	$TopPipe/CollisionShape2D.position = Vector2(40, top_height / 2)
+
+	$BottomPipe/ColorRect.size = Vector2(80, screen_width)
+	$BottomPipe/ColorRect.position = Vector2(0, bottom_y)
+	$BottomPipe/CollisionShape2D.shape.size = Vector2(80, 720 - bottom_y)
+	$BottomPipe/CollisionShape2D.position = Vector2(40, bottom_y + (720 - bottom_y) / 2)
+
+func _process(delta):
+	position.x -= SPEED * delta
+	if position.x < -100:
+		queue_free()
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryxrj"]
+size = Vector2(79.5, 299)
+
+[node name="pipes" type="Node2D" unique_id=597820951]
+script = SubResource("GDScript_41b8k")
+
+[node name="TopPipe" type="StaticBody2D" parent="." unique_id=1933050899]
+position = Vector2(129, 34)
+
+[node name="ColorRect" type="ColorRect" parent="TopPipe" unique_id=1613667060]
+offset_left = 777.0
+offset_top = 267.0
+offset_right = 857.0
+offset_bottom = 567.0
+color = Color(0.49724925, 0.7786413, 0.30427745, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopPipe" unique_id=1019271897]
+position = Vector2(817.25, 417.5)
+shape = SubResource("RectangleShape2D_ryxrj")
+
+[node name="BottomPipe" type="StaticBody2D" parent="." unique_id=1035101570]
+position = Vector2(129, 34)
+
+[node name="ColorRect" type="ColorRect" parent="BottomPipe" unique_id=534791696]
+offset_left = 380.0
+offset_top = -32.0
+offset_right = 460.0
+offset_bottom = 268.0
+color = Color(0.49724925, 0.7786413, 0.30427745, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomPipe" unique_id=484988979]
+position = Vector2(420.25, 118.5)
+shape = SubResource("RectangleShape2D_ryxrj")
