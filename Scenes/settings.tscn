@@ -10,6 +10,9 @@ script/source = "extends Node2D
 @onready var onButton: Button = $OnButton
 @onready var offButton: Button = $OffButton
 
+@onready var fabyButton: Button = $Faby
+@onready var redButton: Button = $Red
+
 func _ready() -> void:
 	pass
 
@@ -29,6 +32,13 @@ func _process(delta: float) -> void:
 	else:
 		onButton.modulate = Color(\"ff5342ff\")
 		offButton.modulate = Color(\"89f252\")
+		
+	if Globe.flappy == true:
+		fabyButton.modulate = Color(\"89f252\")
+		redButton.modulate = Color(\"ff5342ff\")
+	else:
+		fabyButton.modulate = Color(\"ff5342ff\")
+		redButton.modulate = Color(\"89f252\")
 
 
 func _on_button_pressed() -> void:
@@ -57,6 +67,23 @@ script/source = "extends Button
 
 func _on_pressed() -> void:
 	Globe.mario = false
+"
+
+[sub_resource type="GDScript" id="GDScript_aaqfp"]
+resource_name = "clickEvent"
+script/source = "extends Button
+
+
+func _on_pressed() -> void:
+	Globe.flappy = true
+"
+
+[sub_resource type="GDScript" id="GDScript_j2dne"]
+resource_name = "clickEvent"
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	Globe.flappy = false
 "
 
 [sub_resource type="GDScript" id="GDScript_lhmql"]
@@ -118,6 +145,33 @@ scale = Vector2(2.1496744, 2.1820273)
 text = "Luigi"
 script = SubResource("GDScript_i44u3")
 
+[node name="lbl3" type="RichTextLabel" parent="." unique_id=752213735]
+offset_left = 2.0
+offset_top = 296.99994
+offset_right = 1151.0
+offset_bottom = 397.99994
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/normal_font_size = 40
+text = "Character Select (Minigame 3):"
+
+[node name="Faby" type="Button" parent="." unique_id=1061720772]
+offset_left = 617.0
+offset_top = 295.0
+offset_right = 671.0
+offset_bottom = 326.0
+scale = Vector2(2.1496744, 2.1820273)
+text = "Faby"
+script = SubResource("GDScript_aaqfp")
+
+[node name="Red" type="Button" parent="." unique_id=1694149031]
+offset_left = 781.0
+offset_top = 295.99994
+offset_right = 835.0
+offset_bottom = 326.99994
+scale = Vector2(2.1496744, 2.1820273)
+text = "Red"
+script = SubResource("GDScript_j2dne")
+
 [node name="lbl2" type="RichTextLabel" parent="." unique_id=711341282]
 offset_top = 212.99995
 offset_right = 1149.0
@@ -154,6 +208,8 @@ text = "Back"
 
 [connection signal="pressed" from="Mario" to="Mario" method="_on_pressed"]
 [connection signal="pressed" from="Luigi" to="Luigi" method="_on_pressed"]
+[connection signal="pressed" from="Faby" to="Faby" method="_on_pressed"]
+[connection signal="pressed" from="Red" to="Red" method="_on_pressed"]
 [connection signal="pressed" from="OnButton" to="OnButton" method="_on_pressed"]
 [connection signal="pressed" from="OffButton" to="OffButton" method="_on_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_button_pressed"]
