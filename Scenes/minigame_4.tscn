@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://6r40ci8cdr7x"]
+
+[ext_resource type="PackedScene" uid="uid://dwkwuivxrn2ri" path="res://Scenes/player_paddle.tscn" id="1_wcvdo"]
+[ext_resource type="PackedScene" uid="uid://c4elgon040b5r" path="res://Scenes/robot_paddle.tscn" id="2_lrixb"]
+[ext_resource type="PackedScene" uid="uid://caoor6r5vwfy0" path="res://Scenes/ball.tscn" id="3_xea2i"]
+
+[sub_resource type="GDScript" id="GDScript_ledia"]
+resource_name = "main"
+script/source = "extends Node2D
+
+var player_score = 0
+var robot_score = 0
+var score_to_win = 5
+
+const KONAMI = [\"ui_up\", \"ui_up\", \"ui_down\", \"ui_down\", \"ui_left\", \"ui_right\", \"ui_left\", \"ui_right\", \"b\", \"a\", \"ui_accept\"]
+var konami_index = 0
+
+func _ready():
+	score_to_win = 5
+
+func _process(delta):
+	_check_konami()
+
+	if $ball.position.x < 0:
+		robot_score += 1
+		update_score()
+		reset_ball(1)
+	if $ball.position.x > 1152:
+		player_score += 1
+		update_score()
+		reset_ball(-1)
+
+	if player_score >= score_to_win:
+		win()
+	if robot_score >= score_to_win:
+		lose()
+
+func _check_konami():
+	for action in KONAMI:
+		if Input.is_action_just_pressed(action):
+			if action == KONAMI[konami_index]:
+				konami_index += 1
+				if konami_index >= KONAMI.size():
+					win()
+			else:
+				konami_index = 0
+			break
+
+func reset_ball(direction: int):
+	$ball.reset()
+	$ball.velocity.x = abs($ball.velocity.x) * direction
+
+func update_score():
+	$ScoreLabel.text = str(player_score) + \" - \" + str(robot_score)
+
+func win():
+	get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
+
+func lose():
+	Globe.lives -= 1
+	get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryxrj"]
+size = Vector2(1149.5, 9.5)
+
+[node name="minigame_4" type="Node2D" unique_id=1752775026]
+script = SubResource("GDScript_ledia")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1872065275]
+offset_right = 1152.0
+offset_bottom = 646.0
+color = Color(0, 0, 0, 1)
+
+[node name="ScoreLabel" type="RichTextLabel" parent="." unique_id=668614865]
+offset_right = 1151.0
+offset_bottom = 46.0
+theme_override_font_sizes/normal_font_size = 29
+text = "Score:"
+horizontal_alignment = 1
+
+[node name="playerPaddle" parent="." unique_id=1207910909 instance=ExtResource("1_wcvdo")]
+position = Vector2(20, 264)
+
+[node name="ball" parent="." unique_id=920537759 instance=ExtResource("3_xea2i")]
+position = Vector2(572, 342)
+
+[node name="TopWall" type="StaticBody2D" parent="." unique_id=1687674377]
+position = Vector2(574.25, 5.25)
+
+[node name="topWall" type="CollisionShape2D" parent="TopWall" unique_id=1588562609]
+shape = SubResource("RectangleShape2D_ryxrj")
+
+[node name="BottomWall" type="StaticBody2D" parent="." unique_id=905640658]
+
+[node name="bottomWall" type="CollisionShape2D" parent="BottomWall" unique_id=139188217]
+position = Vector2(576, 640)
+shape = SubResource("RectangleShape2D_ryxrj")
+
+[node name="robotPaddle" parent="." unique_id=1617508845 instance=ExtResource("2_lrixb")]
+position = Vector2(1100, 264)

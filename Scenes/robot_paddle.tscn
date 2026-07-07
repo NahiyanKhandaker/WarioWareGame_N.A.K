@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://c4elgon040b5r"]
+
+[sub_resource type="GDScript" id="GDScript_ledia"]
+resource_name = "autoMovement"
+script/source = "extends CharacterBody2D
+
+var SPEED = 200.0
+var REACTION_DELAY = 0.15
+
+@onready var ball = get_parent().get_node(\"ball\")
+
+var target_y = 0.0
+var time_since_update = 0.0
+
+func _ready():
+	if Globe.botDifficulty == \"easy\":
+		SPEED = 150.0
+		REACTION_DELAY = 0.25
+	elif Globe.botDifficulty == \"medium\":
+		SPEED = 300.0
+		REACTION_DELAY = 0.10
+	elif Globe.botDifficulty == \"hard\":
+		SPEED = 900.0
+		REACTION_DELAY = 0.0
+
+func _physics_process(delta):
+	if ball == null:
+		return
+
+	time_since_update += delta
+	if time_since_update >= REACTION_DELAY:
+		target_y = ball.position.y
+		time_since_update = 0.0
+
+	velocity.y = 0
+	velocity.x = 0
+
+	if target_y < position.y + 60:
+		velocity.y = -SPEED
+	elif target_y > position.y + 60:
+		velocity.y = SPEED
+
+	position.y = clamp(position.y, 0, 528)
+	move_and_slide()
+	position.x = 1100
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryxrj"]
+size = Vector2(20.5, 122)
+
+[node name="robotPaddle" type="CharacterBody2D" unique_id=1207910909]
+script = SubResource("GDScript_ledia")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2065981820]
+offset_right = 20.0
+offset_bottom = 120.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=425672372]
+position = Vector2(10.75, 62)
+shape = SubResource("RectangleShape2D_ryxrj")

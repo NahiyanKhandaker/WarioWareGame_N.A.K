@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://caoor6r5vwfy0"]
+
+[sub_resource type="GDScript" id="GDScript_ihae0"]
+resource_name = "speed"
+script/source = "extends CharacterBody2D
+
+const BASE_SPEED = 700.0
+const SPEED_INCREMENT = 50.0
+const MAX_SPEED = 1200.0
+
+var current_speed = BASE_SPEED
+
+func _ready():
+	velocity = Vector2(BASE_SPEED, randf_range(-200, 200))
+
+func _physics_process(delta):
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		velocity = velocity.bounce(collision.get_normal())
+		if collision.get_collider() is CharacterBody2D:
+			current_speed = min(current_speed + SPEED_INCREMENT, MAX_SPEED)
+			velocity = velocity.normalized() * current_speed
+
+func reset():
+	current_speed = BASE_SPEED
+	position = Vector2(576, 324)
+	velocity = Vector2(BASE_SPEED, randf_range(-200, 200))
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryxrj"]
+size = Vector2(18.75, 24)
+
+[node name="ball" type="CharacterBody2D" unique_id=920537759]
+script = SubResource("GDScript_ihae0")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1144505051]
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=988911226]
+position = Vector2(10.625, 10)
+shape = SubResource("RectangleShape2D_ryxrj")

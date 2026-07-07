@@ -14,15 +14,16 @@ script/source = "extends Node2D
 @onready var level: RichTextLabel = $Level
 @onready var lives: RichTextLabel = $Lives
 @onready var timer: RichTextLabel = $Timer
+@onready var info: RichTextLabel = $Info
 
 var time
 
 func _ready() -> void:
 	await Timer(5.0) # using the function created
 	
-	if Globe.minigames_done < 5: # if you havent completed 3 minigames yet 
+	if Globe.minigames_done < 4: # if you havent completed 3 minigames yet 
 		Globe.minigames_done = Globe.minigames_done +1
-		get_tree().change_scene_to_file(\"res://scenes/minigame_\" + str(Globe.minigames_done) + \".tscn\") # changes your scene by arranging this frankenstein path. 
+		get_tree().change_scene_to_file(\"res://Scenes/minigame_\" + str(Globe.minigames_done) + \".tscn\") # changes your scene by arranging this frankenstein path. 
 # Above, your script is being told to go to the next minigame. If the 
 # current minigame is Level 1, then you would be on minigame 1. If you 
 # complete that level, you have the minigames_done add one, and then you 
@@ -30,7 +31,7 @@ func _ready() -> void:
 # should be next. Make sure you name your minigame saves appropriately.
 
 	else:
-		get_tree().change_scene_to_file(\"res://scenes/title_screen.tscn\") # changes your scene
+		get_tree().change_scene_to_file(\"res://Scenes/title_screen.tscn\") # changes your scene
 	
 
 func _process(delta: float) -> void: # runs EVERY FRAME
@@ -59,8 +60,14 @@ func _process(delta: float) -> void: # runs EVERY FRAME
 	lives.text = \"Lives: \" + str(Globe.lives)
 	level.text = \"Level \" + str(Globe.minigames_done) # this tells you want minigame you're on using concatenation (google the word yo)
 	
+	if Globe.minigames_done == 0:
+		info.text = \"Collect all garlic to win\"
+	
 	if Globe.lives == 0:
 		get_tree().change_scene_to_file(\"res://scenes/defeat_screen.tscn\")
+		
+	if Globe.minigames_done == 4:
+		get_tree().change_scene_to_file(\"res://scenes/done_screen.tscn\")
 
 func Timer(start_time: float): # making a new function for timer countdown!
 	# we want the timer to go down, and when it reaches 0 it transitions 
@@ -152,3 +159,13 @@ theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 42
 text = "0.0"
 horizontal_alignment = 1
+
+[node name="Info" type="RichTextLabel" parent="." unique_id=1649789817]
+offset_left = 323.0
+offset_top = 297.0
+offset_right = 1101.0
+offset_bottom = 447.0
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/normal_font_size = 27
+text = "yooo
+"

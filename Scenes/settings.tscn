@@ -10,6 +10,13 @@ script/source = "extends Node2D
 @onready var onButton: Button = $OnButton
 @onready var offButton: Button = $OffButton
 
+@onready var fabyButton: Button = $Faby
+@onready var redButton: Button = $Red
+
+@onready var easyButton: Button = $easy
+@onready var mediumButton: Button = $medium
+@onready var hardButton: Button = $hard
+
 func _ready() -> void:
 	pass
 
@@ -29,6 +36,28 @@ func _process(delta: float) -> void:
 	else:
 		onButton.modulate = Color(\"ff5342ff\")
 		offButton.modulate = Color(\"89f252\")
+		
+	if Globe.flappy == true:
+		fabyButton.modulate = Color(\"89f252\")
+		redButton.modulate = Color(\"ff5342ff\")
+	else:
+		fabyButton.modulate = Color(\"ff5342ff\")
+		redButton.modulate = Color(\"89f252\")
+		
+	if Globe.botDifficulty == \"easy\":
+		easyButton.modulate = Color(\"89f252\")
+		mediumButton.modulate = Color(\"ff5342ff\")
+		hardButton.modulate = Color(\"ff5342ff\")
+	elif Globe.botDifficulty == \"medium\":
+		easyButton.modulate = Color(\"ff5342ff\")
+		mediumButton.modulate = Color(\"89f252\")
+		hardButton.modulate = Color(\"ff5342ff\")
+	elif Globe.botDifficulty == \"hard\":
+		easyButton.modulate = Color(\"ff5342ff\")
+		mediumButton.modulate = Color(\"ff5342ff\")
+		hardButton.modulate = Color(\"89f252\")
+
+			
 
 
 func _on_button_pressed() -> void:
@@ -43,24 +72,65 @@ colors = PackedColorArray(1, 1, 1, 1, 0.4054054, 0.4054054, 0.4054054, 1, 0, 0, 
 gradient = SubResource("Gradient_a627d")
 fill = 2
 
-[sub_resource type="GDScript" id="GDScript_4geyq"]
-resource_name = "clickEvent"
+[sub_resource type="GDScript" id="GDScript_6vr2p"]
+resource_name = "clickedLuigi"
 script/source = "extends Button
 
-func _on_pressed() -> void:
-	Globe.mario = true
-"
 
-[sub_resource type="GDScript" id="GDScript_i44u3"]
-resource_name = "clickEvent"
-script/source = "extends Button
 
 func _on_pressed() -> void:
 	Globe.mario = false
 "
 
-[sub_resource type="GDScript" id="GDScript_lhmql"]
-resource_name = "clickEventRoll"
+[sub_resource type="GDScript" id="GDScript_j2dne"]
+resource_name = "marioClicked"
+script/source = "extends Button
+
+
+func _on_pressed() -> void:
+	Globe.mario = true
+"
+
+[sub_resource type="GDScript" id="GDScript_ihae0"]
+resource_name = "difficulty"
+script/source = "extends Button
+
+
+func _on_pressed() -> void:
+	Globe.botDifficulty = \"easy\"
+"
+
+[sub_resource type="GDScript" id="GDScript_6kysc"]
+resource_name = "difficulty"
+script/source = "extends Button
+
+
+func _on_pressed() -> void:
+	Globe.botDifficulty = \"medium\"
+"
+
+[sub_resource type="GDScript" id="GDScript_js0jx"]
+resource_name = "difficulty"
+script/source = "extends Button
+
+
+func _on_pressed() -> void:
+	Globe.botDifficulty = \"hard\"
+"
+
+[sub_resource type="GDScript" id="GDScript_4geyq"]
+resource_name = "clickEventOff"
+script/source = "extends Button
+
+
+
+
+func _on_pressed() -> void:
+	Globe.rollingBackground = false
+"
+
+[sub_resource type="GDScript" id="GDScript_aaqfp"]
+resource_name = "clickEventOn"
 script/source = "extends Button
 
 func _on_pressed() -> void:
@@ -72,7 +142,15 @@ resource_name = "clickEventRoll"
 script/source = "extends Button
 
 func _on_pressed() -> void:
-	Globe.rollingBackground = false
+	Globe.flappy = true
+"
+
+[sub_resource type="GDScript" id="GDScript_lhmql"]
+resource_name = "clickEventRoll"
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	Globe.flappy = false
 "
 
 [node name="Settings" type="Node2D" unique_id=1231067869]
@@ -91,7 +169,7 @@ theme_override_font_sizes/normal_font_size = 57
 text = "Settings"
 horizontal_alignment = 1
 
-[node name="lbl1" type="RichTextLabel" parent="." unique_id=2134343756]
+[node name="charSelect" type="RichTextLabel" parent="." unique_id=2134343756]
 offset_left = 4.0
 offset_top = 123.0
 offset_right = 1153.0
@@ -100,49 +178,31 @@ theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 40
 text = "Character Select (Minigame 1):"
 
-[node name="Mario" type="Button" parent="." unique_id=232194831]
-offset_left = 619.0
-offset_top = 121.000046
-offset_right = 673.0
-offset_bottom = 152.00005
-scale = Vector2(2.1496744, 2.1820273)
-text = "Mario"
-script = SubResource("GDScript_4geyq")
+[node name="charSelect3" type="RichTextLabel" parent="." unique_id=752213735]
+offset_left = 2.0
+offset_top = 296.99994
+offset_right = 1151.0
+offset_bottom = 397.99994
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/normal_font_size = 40
+text = "Character Select (Minigame 3):"
 
-[node name="Luigi" type="Button" parent="." unique_id=576794111]
-offset_left = 783.0
-offset_top = 122.00001
-offset_right = 837.0
-offset_bottom = 153.0
-scale = Vector2(2.1496744, 2.1820273)
-text = "Luigi"
-script = SubResource("GDScript_i44u3")
+[node name="botDifficulty" type="RichTextLabel" parent="." unique_id=113150955]
+offset_left = 2.0
+offset_top = 372.0
+offset_right = 1151.0
+offset_bottom = 473.0
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/normal_font_size = 40
+text = "Bot Difficulty: (Minigame 4):"
 
-[node name="lbl2" type="RichTextLabel" parent="." unique_id=711341282]
+[node name="movingBG" type="RichTextLabel" parent="." unique_id=711341282]
 offset_top = 212.99995
 offset_right = 1149.0
 offset_bottom = 313.99994
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 40
 text = "Moving Background:"
-
-[node name="OnButton" type="Button" parent="." unique_id=138987936]
-offset_left = 411.0
-offset_top = 209.0
-offset_right = 465.0
-offset_bottom = 240.0
-scale = Vector2(2.1496744, 2.1820273)
-text = "ON"
-script = SubResource("GDScript_lhmql")
-
-[node name="OffButton" type="Button" parent="." unique_id=1962688222]
-offset_left = 575.0
-offset_top = 209.99995
-offset_right = 629.0
-offset_bottom = 240.99995
-scale = Vector2(2.1496744, 2.1820273)
-text = "OFF"
-script = SubResource("GDScript_ryxrj")
 
 [node name="BackButton" type="Button" parent="." unique_id=527834582]
 offset_left = 1008.0
@@ -152,8 +212,99 @@ offset_bottom = 72.0
 theme_override_font_sizes/font_size = 29
 text = "Back"
 
-[connection signal="pressed" from="Mario" to="Mario" method="_on_pressed"]
-[connection signal="pressed" from="Luigi" to="Luigi" method="_on_pressed"]
-[connection signal="pressed" from="OnButton" to="OnButton" method="_on_pressed"]
-[connection signal="pressed" from="OffButton" to="OffButton" method="_on_pressed"]
+[node name="Luigi" type="Button" parent="." unique_id=576794111]
+offset_left = 783.0
+offset_top = 121.0
+offset_right = 837.0
+offset_bottom = 152.0
+scale = Vector2(2.1496744, 2.1820273)
+text = "Luigi"
+script = SubResource("GDScript_6vr2p")
+
+[node name="Mario" type="Button" parent="." unique_id=29729838]
+offset_left = 643.0
+offset_top = 121.0
+offset_right = 697.0
+offset_bottom = 152.0
+scale = Vector2(2.1496744, 2.1820273)
+text = "Mario
+"
+script = SubResource("GDScript_j2dne")
+
+[node name="easy" type="Button" parent="." unique_id=1917856444]
+offset_left = 550.0
+offset_top = 373.0
+offset_right = 676.0
+offset_bottom = 435.0
+theme_override_font_sizes/font_size = 29
+text = "Easy
+"
+script = SubResource("GDScript_ihae0")
+
+[node name="medium" type="Button" parent="." unique_id=1748459474]
+offset_left = 692.0
+offset_top = 373.0
+offset_right = 818.0
+offset_bottom = 435.0
+theme_override_font_sizes/font_size = 29
+text = "Medium
+"
+script = SubResource("GDScript_6kysc")
+
+[node name="hard" type="Button" parent="." unique_id=276799842]
+offset_left = 839.0
+offset_top = 373.0
+offset_right = 965.0
+offset_bottom = 435.0
+theme_override_font_sizes/font_size = 29
+text = "Hard
+"
+script = SubResource("GDScript_js0jx")
+
+[node name="OffButton" type="Button" parent="." unique_id=1962688222]
+offset_left = 575.0
+offset_top = 208.99995
+offset_right = 629.0
+offset_bottom = 239.99995
+scale = Vector2(2.1496744, 2.1820273)
+text = "OFF"
+script = SubResource("GDScript_4geyq")
+
+[node name="OnButton" type="Button" parent="." unique_id=138987936]
+offset_left = 411.0
+offset_top = 209.0
+offset_right = 465.0
+offset_bottom = 240.0
+scale = Vector2(2.1496744, 2.1820273)
+text = "ON"
+script = SubResource("GDScript_aaqfp")
+
+[node name="Faby" type="Button" parent="." unique_id=1216694637]
+offset_left = 762.0
+offset_top = 291.0
+offset_right = 816.0
+offset_bottom = 322.0
+scale = Vector2(2.1496744, 2.1820273)
+text = "Faby"
+script = SubResource("GDScript_ryxrj")
+
+[node name="Red" type="Button" parent="." unique_id=2138864588]
+offset_left = 598.0
+offset_top = 291.00003
+offset_right = 652.0
+offset_bottom = 322.00003
+scale = Vector2(2.1496744, 2.1820273)
+text = "Red
+"
+script = SubResource("GDScript_lhmql")
+
 [connection signal="pressed" from="BackButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Luigi" to="Luigi" method="_on_pressed"]
+[connection signal="pressed" from="Mario" to="Mario" method="_on_pressed"]
+[connection signal="pressed" from="easy" to="easy" method="_on_pressed"]
+[connection signal="pressed" from="medium" to="medium" method="_on_pressed"]
+[connection signal="pressed" from="hard" to="hard" method="_on_pressed"]
+[connection signal="pressed" from="OffButton" to="OffButton" method="_on_pressed"]
+[connection signal="pressed" from="OnButton" to="OnButton" method="_on_pressed"]
+[connection signal="pressed" from="Faby" to="Faby" method="_on_pressed"]
+[connection signal="pressed" from="Red" to="Red" method="_on_pressed"]

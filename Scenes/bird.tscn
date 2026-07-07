@@ -11,6 +11,14 @@ const FLAP_FORCE = -400.0
 
 var alive = true
 
+@onready var sprite: Sprite2D = $Sprite2D
+
+func _ready() -> void:
+	if Globe.flappy:
+		sprite.texture = load(\"res://Assets/flappy.png\")
+	else:
+		sprite.texture = load(\"res://Assets/red.png\")
+
 func _physics_process(delta):
 	if not alive:
 		return
