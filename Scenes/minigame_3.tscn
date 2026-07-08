@@ -62,6 +62,9 @@ func end_game(won: bool):
 	get_tree().change_scene_to_file(\"res://Scenes/level_scene.tscn\")
 "
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryxrj"]
+size = Vector2(1155.5, 9.25)
+
 [node name="minigame_3" type="Node2D" unique_id=1906252585]
 script = SubResource("GDScript_h40nw")
 
@@ -92,3 +95,15 @@ position = Vector2(332, 40)
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=498739435]
 stream = ExtResource("3_ihkhm")
 autoplay = true
+
+[node name="TopWall" type="StaticBody2D" parent="." unique_id=929905707]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall" unique_id=1494289288]
+position = Vector2(575.25, 4.75)
+shape = SubResource("RectangleShape2D_ryxrj")
+
+[node name="BottomWall" type="StaticBody2D" parent="." unique_id=816684198]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall" unique_id=972690840]
+position = Vector2(575, 640.625)
+shape = SubResource("RectangleShape2D_ryxrj")

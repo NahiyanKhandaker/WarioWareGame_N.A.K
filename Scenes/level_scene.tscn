@@ -21,6 +21,9 @@ script/source = "extends Node2D
 var time
 
 func _ready() -> void:
+	if Globe.lives == 0:
+		get_tree().change_scene_to_file(\"res://scenes/defeat_screen.tscn\")
+
 	if Globe.minigames_done == 0:
 		info.text = \"Collect all garlic to win\"
 	elif Globe.minigames_done == 1:
@@ -30,9 +33,12 @@ func _ready() -> void:
 	elif Globe.minigames_done == 3:
 		info.text = \"If you can't score 5 points, Konami can provide\"
 	elif Globe.minigames_done == 4:
-		info.text = \"There's no more mingames left, great job!\"
-		
+		info.text = \"There's no more minigames left, great job!\"
+
 	await Timer(5.0)
+
+	if not is_inside_tree():
+		return
 
 	if Globe.minigames_done < 4:
 		Globe.minigames_done += 1
@@ -63,17 +69,18 @@ func _process(delta: float) -> void:
 	lives.text = \"Lives: \" + str(Globe.lives)
 	level.text = \"Level \" + str(Globe.minigames_done)
 
-	if Globe.lives == 0:
-		get_tree().change_scene_to_file(\"res://scenes/defeat_screen.tscn\")
-
 func Timer(start_time: float):
 	time = start_time
 	while time > 0.0:
+		if not is_inside_tree():
+			return
 		await wait(0.1)
 		time -= 0.1
 	return
 
 func wait(seconds: float) -> void:
+	if not is_inside_tree():
+		return
 	await get_tree().create_timer(seconds).timeout
 "
 
