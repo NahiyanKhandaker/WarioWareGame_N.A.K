@@ -30,13 +30,13 @@ func _process(delta: float) -> void:
 
 	if buttons_pressed == 10 and not game_over:
 		game_over = true
-		get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
+		get_tree().change_scene_to_file(\"res://Scenes/level_scene.tscn\")
 
 	if timer_end and not game_over:
 		game_over = true
 		Globe.lives -= 1
 		Globe.minigames_done -= 1
-		get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
+		get_tree().change_scene_to_file(\"res://Scenes/level_scene.tscn\")
 
 func garlic_clicked():
 	if game_over:

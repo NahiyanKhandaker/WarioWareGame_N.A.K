@@ -48,7 +48,7 @@ func win_game():
 	game_over = true
 	$Bird.alive = false
 	$PipeTimer.stop()
-	get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
+	get_tree().change_scene_to_file(\"res://Scenes/level_scene.tscn\")
 
 func end_game(won: bool):
 	if game_over:
@@ -58,7 +58,7 @@ func end_game(won: bool):
 	$PipeTimer.stop()
 	Globe.lives -= 1
 	Globe.minigames_done -= 1
-	get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
+	get_tree().change_scene_to_file(\"res://Scenes/level_scene.tscn\")
 "
 
 [node name="minigame_3" type="Node2D" unique_id=1906252585]

@@ -28,7 +28,9 @@ func _ready() -> void:
 		info.text = \"Score 10 points to continue\"
 	elif Globe.minigames_done == 3:
 		info.text = \"If you can't score 5 points, Konami can provide\"
-
+	elif Globe.minigames_done == 4:
+		info.text = \"There's no more mingames left, great job!\"
+		
 	await Timer(5.0)
 
 	if Globe.minigames_done < 4:
