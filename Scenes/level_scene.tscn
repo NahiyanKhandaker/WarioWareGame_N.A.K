@@ -6,6 +6,7 @@
 [sub_resource type="GDScript" id="GDScript_ryxrj"]
 resource_name = "timer_screen"
 script/source = "extends Node2D
+
 @onready var garlic_container: HBoxContainer = $GarlicContainer
 @onready var garlic: TextureRect = $GarlicContainer/Garlic
 @onready var garlic_2: TextureRect = $GarlicContainer/Garlic2
@@ -19,26 +20,25 @@ script/source = "extends Node2D
 var time
 
 func _ready() -> void:
-	await Timer(5.0) # using the function created
-	
-	if Globe.minigames_done < 4: # if you havent completed 3 minigames yet 
-		Globe.minigames_done = Globe.minigames_done +1
-		get_tree().change_scene_to_file(\"res://Scenes/minigame_\" + str(Globe.minigames_done) + \".tscn\") # changes your scene by arranging this frankenstein path. 
-# Above, your script is being told to go to the next minigame. If the 
-# current minigame is Level 1, then you would be on minigame 1. If you 
-# complete that level, you have the minigames_done add one, and then you 
-# look for the scene titled `minigame_` and then whatever minigame number 
-# should be next. Make sure you name your minigame saves appropriately.
+	if Globe.minigames_done == 0:
+		info.text = \"Collect all garlic to win\"
+	elif Globe.minigames_done == 1:
+		info.text = \"Click all garlic to win (DONT TOUCH BOMBS)\"
+	elif Globe.minigames_done == 2:
+		info.text = \"Score 10 points to continue\"
+	elif Globe.minigames_done == 3:
+		info.text = \"If you can't score 5 points, Konami can provide\"
 
+	await Timer(5.0)
+
+	if Globe.minigames_done < 4:
+		Globe.minigames_done += 1
+		get_tree().change_scene_to_file(\"res://Scenes/minigame_\" + str(Globe.minigames_done) + \".tscn\")
 	else:
-		get_tree().change_scene_to_file(\"res://Scenes/title_screen.tscn\") # changes your scene
-	
+		get_tree().change_scene_to_file(\"res://Scenes/done_screen.tscn\")
 
-func _process(delta: float) -> void: # runs EVERY FRAME
-	match Globe.lives: # asks or checks if lives is equal to one of 
-#these values, cool hack. by the way this is a horrid way to illustrate the 
-#lives visually so later you can always find alternative code. Now, dw abt it.
-
+func _process(delta: float) -> void:
+	match Globe.lives:
 		4:
 			garlic.hide()
 		3:
@@ -54,37 +54,24 @@ func _process(delta: float) -> void: # runs EVERY FRAME
 			garlic_3.hide()
 			garlic_4.hide()
 		0:
-			garlic_container.hide() # just hides everything
-	
-	timer.text = str(time) # make ths text reflect the value of the time variable. this makes names easier. the str() converts the int to a String
+			garlic_container.hide()
+
+	timer.text = str(time)
 	lives.text = \"Lives: \" + str(Globe.lives)
-	level.text = \"Level \" + str(Globe.minigames_done) # this tells you want minigame you're on using concatenation (google the word yo)
-	
-	if Globe.minigames_done == 0:
-		info.text = \"Collect all garlic to win\"
-	
+	level.text = \"Level \" + str(Globe.minigames_done)
+
 	if Globe.lives == 0:
 		get_tree().change_scene_to_file(\"res://scenes/defeat_screen.tscn\")
-		
-	if Globe.minigames_done == 4:
-		get_tree().change_scene_to_file(\"res://scenes/done_screen.tscn\")
 
-func Timer(start_time: float): # making a new function for timer countdown!
-	# we want the timer to go down, and when it reaches 0 it transitions 
-	# to the next scene!
-	
-	time = start_time # make the timer, which is reflected through the timer text, start at your desired number
-	
-	while time > 0.0: # run if timer hasnt reached 0
-		await wait(0.1) # asks script to wait on this function. the 'wait' name for the function does nothing here, as await is just telling the scrpit to wait for the function to complete before progressing
-		time -= 0.1 # remove 0.1
-		# progressively get the value smaller and smallerS
-	
-	#when timer reaches 0
+func Timer(start_time: float):
+	time = start_time
+	while time > 0.0:
+		await wait(0.1)
+		time -= 0.1
 	return
 
-func wait(seconds: float) -> void: # write this simple function out for wait!
-	await get_tree().create_timer(seconds).timeout # makes u wait, dw abt this being complex '''
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
 "
 
 [node name="level_scene" type="Node2D" unique_id=1134443550]
@@ -129,24 +116,24 @@ expand_mode = 2
 
 [node name="Level" type="RichTextLabel" parent="." unique_id=1007441246]
 clip_contents = false
-offset_left = 16.0
-offset_top = 442.0
-offset_right = 1160.0
-offset_bottom = 501.0
+offset_left = 7.0
+offset_top = 221.0
+offset_right = 1151.0
+offset_bottom = 280.0
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 42
 text = "Level#"
 horizontal_alignment = 1
 
-[node name="Lives" type="RichTextLabel" parent="." unique_id=178521141]
+[node name="Lives" type="RichTextLabel" parent="." unique_id=1401273649]
 clip_contents = false
-offset_left = 5.0
-offset_top = 212.0
-offset_right = 1149.0
-offset_bottom = 271.0
+offset_left = 6.0
+offset_top = 588.0
+offset_right = 1150.0
+offset_bottom = 647.0
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 42
-text = "Lives: "
+text = "Lives:"
 horizontal_alignment = 1
 
 [node name="Timer" type="RichTextLabel" parent="." unique_id=1036621369]
@@ -160,12 +147,11 @@ theme_override_font_sizes/normal_font_size = 42
 text = "0.0"
 horizontal_alignment = 1
 
-[node name="Info" type="RichTextLabel" parent="." unique_id=1649789817]
-offset_left = 323.0
-offset_top = 297.0
-offset_right = 1101.0
-offset_bottom = 447.0
-theme_override_constants/outline_size = 7
-theme_override_font_sizes/normal_font_size = 27
-text = "yooo
-"
+[node name="Info" type="RichTextLabel" parent="." unique_id=1920595130]
+offset_left = 1.0
+offset_top = 315.0
+offset_right = 1149.0
+offset_bottom = 455.0
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/normal_font_size = 24
+horizontal_alignment = 1

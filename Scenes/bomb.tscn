@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bjra6qygwxsto"]
+
+[ext_resource type="Texture2D" uid="uid://b7lxcsqeetwq8" path="res://Assets/bomb.png" id="1_yx723"]
+
+[sub_resource type="GDScript" id="GDScript_kdq24"]
+resource_name = "movement"
+script/source = "extends CharacterBody2D
+
+@export var speed = Vector2(200, 100)
+
+
+func _ready():
+	velocity = speed
+	input_pickable = true
+	connect(\"input_event\", _input_event)
+
+
+func _physics_process(delta):
+	var collision = move_and_collide(velocity * delta)
+
+	if collision:
+		velocity = velocity.bounce(collision.get_normal())
+
+
+func _input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.pressed:
+		get_parent().bomb_clicked()
+		queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ihae0"]
+radius = 88.06957
+
+[node name="Bomb" type="CharacterBody2D" unique_id=39216103]
+script = SubResource("GDScript_kdq24")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=634880001]
+position = Vector2(159, 155.5)
+scale = Vector2(0.52, 0.46130952)
+texture = ExtResource("1_yx723")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=398252615]
+position = Vector2(157, 161)
+shape = SubResource("CircleShape2D_ihae0")

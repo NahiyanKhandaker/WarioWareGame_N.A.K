@@ -26,9 +26,9 @@ func _process(delta: float) -> void:
 		background.process_mode = Node.PROCESS_MODE_DISABLED
 
 	if buttons_pressed > 0:
-		garlicClicked.text = \"Garlic Clicked: \" + str(buttons_pressed) + \"/10\"
+		garlicClicked.text = \"Garlic Clicked: \" + str(buttons_pressed) + \"/5\"
 
-	if buttons_pressed == 10 and not game_over:
+	if buttons_pressed == 5 and not game_over:
 		game_over = true
 		get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
 

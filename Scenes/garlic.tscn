@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dx02h1v7l80hm"]
+
+[ext_resource type="Texture2D" uid="uid://clmvhhm8t5i6t" path="res://Assets/garlic.png" id="1_kdq24"]
+
+[sub_resource type="GDScript" id="GDScript_kdq24"]
+resource_name = "movement"
+script/source = "extends CharacterBody2D
+
+@export var speed = Vector2(200, 100)
+
+
+func _ready():
+	velocity = speed
+	input_pickable = true
+	connect(\"input_event\", _input_event)
+
+
+func _physics_process(delta):
+	var collision = move_and_collide(velocity * delta)
+
+	if collision:
+		velocity = velocity.bounce(collision.get_normal())
+
+
+func _input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton and event.pressed:
+		get_parent().garlic_clicked()
+		queue_free()
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ryxrj"]
+radius = 62.008064
+
+[node name="Garlic" type="CharacterBody2D" unique_id=1795371104]
+script = SubResource("GDScript_kdq24")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1532033329]
+position = Vector2(159.75002, 139.5)
+scale = Vector2(0.30499992, 0.25399998)
+texture = ExtResource("1_kdq24")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2051689220]
+position = Vector2(161, 145)
+shape = SubResource("CircleShape2D_ryxrj")
