@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://pwoqowjop6a0" path="res://Assets/background6.jpg" id="1_asmx3"]
 [ext_resource type="PackedScene" uid="uid://bqg6l0qlijx1n" path="res://Scenes/bird.tscn" id="2_h40nw"]
+[ext_resource type="AudioStream" uid="uid://bb4j1dp6uyg3c" path="res://Assets/minigame3.mp3" id="3_ihkhm"]
 
 [sub_resource type="GDScript" id="GDScript_h40nw"]
 resource_name = "main"
@@ -87,3 +88,7 @@ theme_override_font_sizes/normal_font_size = 40
 
 [node name="Bird" parent="." unique_id=641051412 instance=ExtResource("2_h40nw")]
 position = Vector2(332, 40)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=498739435]
+stream = ExtResource("3_ihkhm")
+autoplay = true

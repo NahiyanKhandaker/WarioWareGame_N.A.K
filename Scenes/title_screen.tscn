@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ccjf0qkgnc05f" path="res://Assets/background.jpg" id="1_p3fck"]
 [ext_resource type="FontFile" uid="uid://bt2g0wncff3xn" path="res://Assets/LuckiestGuy-Regular.ttf" id="2_p3fck"]
+[ext_resource type="AudioStream" uid="uid://6mxl6mh035pl" path="res://Assets/Title Screen - WarioWare Gold.mp3" id="3_4gxqj"]
 
 [sub_resource type="GDScript" id="GDScript_4gxqj"]
 resource_name = "buttonScript"
@@ -62,6 +63,10 @@ theme_override_constants/outline_size = 40
 theme_override_fonts/normal_font = ExtResource("2_p3fck")
 theme_override_font_sizes/normal_font_size = 108
 text = "Wario-Ware"
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=618905408]
+stream = ExtResource("3_4gxqj")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Settings" to="." method="_on_settings_pressed"]

@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://qeyycsl7sxu7"]
 
+[ext_resource type="AudioStream" uid="uid://6mxl6mh035pl" path="res://Assets/Title Screen - WarioWare Gold.mp3" id="1_4geyq"]
+
 [sub_resource type="GDScript" id="GDScript_eyi13"]
 resource_name = "main"
 script/source = "extends Node2D
@@ -294,6 +296,10 @@ offset_bottom = 240.0
 scale = Vector2(2.1496744, 2.1820273)
 text = "ON"
 script = SubResource("GDScript_i44u3")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=676118685]
+stream = ExtResource("1_4geyq")
+autoplay = true
 
 [connection signal="pressed" from="Faby" to="Faby" method="_on_pressed"]
 [connection signal="pressed" from="easy" to="easy" method="_on_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bfq511d1ppjma"
+path="res://.godot/imported/Saiki K Main Music..mp3-4800f044b098772f9430323128066edc.mp3str"
+
+[deps]
+
+source_file="res://Assets/Saiki K Main Music..mp3"
+dest_files=["res://.godot/imported/Saiki K Main Music..mp3-4800f044b098772f9430323128066edc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

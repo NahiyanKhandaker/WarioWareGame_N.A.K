@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://drar6lyl1e55s"]
 
 [ext_resource type="Texture2D" uid="uid://dpsrurw4kfjqx" path="res://Assets/background5.jpg" id="1_0hunr"]
+[ext_resource type="AudioStream" uid="uid://dvpyljwj70vq4" path="res://Assets/lose.mp3" id="2_4a5bn"]
 
 [node name="defeat_screen" type="Node2D" unique_id=1727391105]
 
@@ -31,3 +32,7 @@ theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 47
 text = "Lives left: None you stink"
 horizontal_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=2042854150]
+stream = ExtResource("2_4a5bn")
+autoplay = true

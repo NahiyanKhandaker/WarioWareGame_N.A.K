@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c5m103cffgewc"]
 
 [ext_resource type="Texture2D" uid="uid://doxaqcg7ysi20" path="res://Assets/background4.jpg" id="1_en6tx"]
+[ext_resource type="AudioStream" uid="uid://cmy6xq7dh1ubt" path="res://Assets/win.mp3" id="2_3rr80"]
 
 [sub_resource type="GDScript" id="GDScript_ihae0"]
 resource_name = "main"
@@ -47,3 +48,7 @@ theme_override_constants/outline_size = 9
 theme_override_font_sizes/normal_font_size = 47
 text = "Lives left: "
 horizontal_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=521012218]
+stream = ExtResource("2_3rr80")
+autoplay = true

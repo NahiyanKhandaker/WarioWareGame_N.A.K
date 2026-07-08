@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://6mxl6mh035pl"
+path="res://.godot/imported/Title Screen - WarioWare Gold.mp3-7bd908165b75f4e1b2f896dc5e5c0cb6.mp3str"
+
+[deps]
+
+source_file="res://Assets/Title Screen - WarioWare Gold.mp3"
+dest_files=["res://.godot/imported/Title Screen - WarioWare Gold.mp3-7bd908165b75f4e1b2f896dc5e5c0cb6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

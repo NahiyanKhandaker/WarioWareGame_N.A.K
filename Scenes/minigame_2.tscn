@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dx02h1v7l80hm" path="res://Scenes/garlic.tscn" id="3_dfb65"]
 [ext_resource type="PackedScene" uid="uid://d2im67nsi2cdx" path="res://Scenes/minigame_timer.tscn" id="3_l4g8r"]
 [ext_resource type="PackedScene" uid="uid://bjra6qygwxsto" path="res://Scenes/bomb.tscn" id="4_rfxq2"]
+[ext_resource type="AudioStream" uid="uid://cojl6ak7heq6d" path="res://Assets/minigame2.mp3" id="5_rfxq2"]
 
 [sub_resource type="GDScript" id="GDScript_rfxq2"]
 resource_name = "main"
@@ -49,7 +50,7 @@ func bomb_clicked():
 	game_over = true
 	Globe.lives -= 1
 	Globe.minigames_done -= 1
-	get_tree().change_scene_to_file(\"res://scenes/level_scene.tscn\")
+	get_tree().change_scene_to_file(\"res://Scenes/level_scene.tscn\")
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ryxrj"]
@@ -134,3 +135,7 @@ position = Vector2(281, 3)
 
 [node name="Bomb5" parent="." unique_id=617038929 instance=ExtResource("4_rfxq2")]
 position = Vector2(255, 326)
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=551042518]
+stream = ExtResource("5_rfxq2")
+autoplay = true
