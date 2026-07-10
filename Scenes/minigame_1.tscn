@@ -341,6 +341,36 @@ horizontal_alignment = 1
 stream = ExtResource("5_5txvl")
 autoplay = true
 
+[node name="Platform4" type="StaticBody2D" parent="." unique_id=1693992438]
+position = Vector2(127, -375)
+rotation = 1.5707964
+
+[node name="ColorRect" type="ColorRect" parent="Platform4" unique_id=1867017236]
+offset_left = -131.0
+offset_top = 127.00001
+offset_right = 1021.0
+offset_bottom = 221.0
+color = Color(0.5058824, 1, 0.5647059, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform4" unique_id=1351990645]
+position = Vector2(444.99997, 173.99997)
+shape = SubResource("RectangleShape2D_ihae0")
+
+[node name="Platform5" type="StaticBody2D" parent="." unique_id=196721321]
+position = Vector2(1374, -371)
+rotation = 1.5707964
+
+[node name="ColorRect" type="ColorRect" parent="Platform5" unique_id=1427831380]
+offset_left = -131.0
+offset_top = 127.00001
+offset_right = 1021.0
+offset_bottom = 221.0
+color = Color(0.5058824, 1, 0.5647059, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform5" unique_id=1254761006]
+position = Vector2(444.99997, 173.99997)
+shape = SubResource("RectangleShape2D_ihae0")
+
 [connection signal="garlic_collected" from="Garlic" to="." method="_on_garlic_garlic_collected"]
 [connection signal="garlic_collected" from="Garlic2" to="." method="_on_garlic_2_garlic_collected"]
 [connection signal="garlic_collected" from="Garlic3" to="." method="_on_garlic_3_garlic_collected"]
