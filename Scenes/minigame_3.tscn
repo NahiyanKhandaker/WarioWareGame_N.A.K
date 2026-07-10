@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://pwoqowjop6a0" path="res://Assets/background6.jpg" id="1_asmx3"]
 [ext_resource type="PackedScene" uid="uid://bqg6l0qlijx1n" path="res://Scenes/bird.tscn" id="2_h40nw"]
+[ext_resource type="FontFile" uid="uid://bt2g0wncff3xn" path="res://Assets/LuckiestGuy-Regular.ttf" id="2_we0jk"]
 [ext_resource type="AudioStream" uid="uid://bb4j1dp6uyg3c" path="res://Assets/minigame3.mp3" id="3_ihkhm"]
 
 [sub_resource type="GDScript" id="GDScript_h40nw"]
@@ -16,6 +17,10 @@ var game_over = false
 var started = false
 
 func _ready():
+	
+	if Globe.lives == 0:
+		get_tree().change_scene_to_file(\"res://scenes/defeat_screen.tscn\")
+		
 	$PipeTimer.connect(\"timeout\", _on_pipe_timer_timeout)
 	$Bird.alive = false
 
@@ -87,6 +92,7 @@ offset_top = 1.0
 offset_right = 359.0
 offset_bottom = 69.0
 theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("2_we0jk")
 theme_override_font_sizes/normal_font_size = 40
 
 [node name="Bird" parent="." unique_id=641051412 instance=ExtResource("2_h40nw")]

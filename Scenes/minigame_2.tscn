@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bvp6yhwre6n3w" path="res://Assets/background3.jpg" id="1_l4g8r"]
 [ext_resource type="PackedScene" uid="uid://dx02h1v7l80hm" path="res://Scenes/garlic.tscn" id="3_dfb65"]
 [ext_resource type="PackedScene" uid="uid://d2im67nsi2cdx" path="res://Scenes/minigame_timer.tscn" id="3_l4g8r"]
+[ext_resource type="FontFile" uid="uid://bt2g0wncff3xn" path="res://Assets/LuckiestGuy-Regular.ttf" id="3_mmgun"]
 [ext_resource type="PackedScene" uid="uid://bjra6qygwxsto" path="res://Scenes/bomb.tscn" id="4_rfxq2"]
 [ext_resource type="AudioStream" uid="uid://cojl6ak7heq6d" path="res://Assets/minigame2.mp3" id="5_rfxq2"]
 
@@ -19,6 +20,10 @@ var timer_end = false
 var game_over = false
 
 func _ready() -> void:
+	
+	if Globe.lives == 0:
+		get_tree().change_scene_to_file(\"res://scenes/defeat_screen.tscn\")
+			
 	await themed_timer.Timer(7.0)
 	timer_end = true
 
@@ -81,6 +86,7 @@ offset_top = 7.0
 offset_right = 1144.0
 offset_bottom = 47.0
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("3_mmgun")
 theme_override_font_sizes/normal_font_size = 29
 text = "Garlic Clicked: 0/5"
 horizontal_alignment = 1

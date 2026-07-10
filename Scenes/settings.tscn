@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://qeyycsl7sxu7"]
 
 [ext_resource type="AudioStream" uid="uid://6mxl6mh035pl" path="res://Assets/Title Screen - WarioWare Gold.mp3" id="1_4geyq"]
+[ext_resource type="FontFile" uid="uid://bt2g0wncff3xn" path="res://Assets/LuckiestGuy-Regular.ttf" id="1_i44u3"]
 
 [sub_resource type="GDScript" id="GDScript_eyi13"]
 resource_name = "main"
@@ -160,6 +161,7 @@ texture = SubResource("GradientTexture2D_ryxrj")
 offset_right = 1149.0
 offset_bottom = 101.0
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("1_i44u3")
 theme_override_font_sizes/normal_font_size = 57
 text = "Settings"
 horizontal_alignment = 1
@@ -170,6 +172,7 @@ offset_top = 123.0
 offset_right = 1153.0
 offset_bottom = 224.0
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("1_i44u3")
 theme_override_font_sizes/normal_font_size = 40
 text = "Character Select (Minigame 1):"
 
@@ -179,42 +182,46 @@ offset_top = 296.99994
 offset_right = 1151.0
 offset_bottom = 397.99994
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("1_i44u3")
 theme_override_font_sizes/normal_font_size = 40
 text = "Character Select (Minigame 3):"
 
 [node name="botDifficulty" type="RichTextLabel" parent="." unique_id=113150955]
-offset_left = 2.0
-offset_top = 372.0
-offset_right = 1151.0
-offset_bottom = 473.0
+offset_left = 1.0
+offset_top = 382.0
+offset_right = 1150.0
+offset_bottom = 483.0
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("1_i44u3")
 theme_override_font_sizes/normal_font_size = 40
 text = "Bot Difficulty: (Minigame 4):"
 
-[node name="lbl3" type="RichTextLabel" parent="." unique_id=312959727]
-offset_left = 2.0
-offset_top = 296.99994
-offset_right = 1151.0
-offset_bottom = 397.99994
+[node name="movingBg" type="RichTextLabel" parent="." unique_id=711341282]
+offset_top = 212.99995
+offset_right = 1149.0
+offset_bottom = 313.99994
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("1_i44u3")
 theme_override_font_sizes/normal_font_size = 40
-text = "Character Select (Minigame 3):"
+text = "Moving Background:"
 
 [node name="Faby" type="Button" parent="." unique_id=1061720772]
-offset_left = 617.0
-offset_top = 295.0
-offset_right = 671.0
-offset_bottom = 326.0
+offset_left = 635.0
+offset_top = 285.00003
+offset_right = 689.0
+offset_bottom = 316.00003
 scale = Vector2(2.1496744, 2.1820273)
+theme_override_fonts/font = ExtResource("1_i44u3")
 text = "Faby"
 script = SubResource("GDScript_l7vst")
 
 [node name="easy" type="Button" parent="." unique_id=414495777]
-offset_left = 550.0
-offset_top = 368.00003
-offset_right = 604.0
-offset_bottom = 399.00003
+offset_left = 555.0
+offset_top = 368.0
+offset_right = 609.0
+offset_bottom = 399.0
 scale = Vector2(2.1496744, 2.1820273)
+theme_override_fonts/font = ExtResource("1_i44u3")
 text = "Easy"
 script = SubResource("GDScript_ad7lh")
 
@@ -224,6 +231,7 @@ offset_top = 368.0
 offset_right = 754.0
 offset_bottom = 399.0
 scale = Vector2(2.1496744, 2.1820273)
+theme_override_fonts/font = ExtResource("1_i44u3")
 text = "Medium"
 script = SubResource("GDScript_4geyq")
 
@@ -233,49 +241,46 @@ offset_top = 368.0
 offset_right = 954.0
 offset_bottom = 399.0
 scale = Vector2(2.1496744, 2.1820273)
+theme_override_fonts/font = ExtResource("1_i44u3")
 text = "Hard"
 script = SubResource("GDScript_aaqfp")
 
 [node name="Red" type="Button" parent="." unique_id=1694149031]
-offset_left = 781.0
-offset_top = 295.99994
-offset_right = 835.0
-offset_bottom = 326.99994
+offset_left = 790.0
+offset_top = 285.0
+offset_right = 844.0
+offset_bottom = 316.0
 scale = Vector2(2.1496744, 2.1820273)
+theme_override_fonts/font = ExtResource("1_i44u3")
 text = "Red"
 script = SubResource("GDScript_35cvv")
-
-[node name="lbl2" type="RichTextLabel" parent="." unique_id=711341282]
-offset_top = 212.99995
-offset_right = 1149.0
-offset_bottom = 313.99994
-theme_override_constants/outline_size = 9
-theme_override_font_sizes/normal_font_size = 40
-text = "Moving Background:"
 
 [node name="BackButton" type="Button" parent="." unique_id=527834582]
 offset_left = 1008.0
 offset_top = 10.0
 offset_right = 1134.0
 offset_bottom = 72.0
+theme_override_fonts/font = ExtResource("1_i44u3")
 theme_override_font_sizes/font_size = 29
 text = "Back"
 
 [node name="Luigi" type="Button" parent="." unique_id=576794111]
-offset_left = 783.0
-offset_top = 121.0
-offset_right = 837.0
-offset_bottom = 152.0
+offset_left = 785.0
+offset_top = 106.0
+offset_right = 839.0
+offset_bottom = 137.0
 scale = Vector2(2.1496744, 2.1820273)
+theme_override_fonts/font = ExtResource("1_i44u3")
 text = "Luigi"
 script = SubResource("GDScript_6vr2p")
 
 [node name="Mario" type="Button" parent="." unique_id=29729838]
-offset_left = 643.0
-offset_top = 121.0
-offset_right = 697.0
-offset_bottom = 152.0
+offset_left = 626.0
+offset_top = 106.0
+offset_right = 682.0
+offset_bottom = 137.0
 scale = Vector2(2.1496744, 2.1820273)
+theme_override_fonts/font = ExtResource("1_i44u3")
 text = "Mario"
 script = SubResource("GDScript_j2dne_mario")
 
@@ -285,6 +290,7 @@ offset_top = 208.99995
 offset_right = 629.0
 offset_bottom = 239.99995
 scale = Vector2(2.1496744, 2.1820273)
+theme_override_fonts/font = ExtResource("1_i44u3")
 text = "OFF"
 script = SubResource("GDScript_lhmql")
 
@@ -294,6 +300,7 @@ offset_top = 209.0
 offset_right = 465.0
 offset_bottom = 240.0
 scale = Vector2(2.1496744, 2.1820273)
+theme_override_fonts/font = ExtResource("1_i44u3")
 text = "ON"
 script = SubResource("GDScript_i44u3")
 

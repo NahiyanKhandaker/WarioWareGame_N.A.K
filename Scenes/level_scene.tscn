@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ccjf0qkgnc05f" path="res://Assets/background.jpg" id="1_rol8n"]
 [ext_resource type="Texture2D" uid="uid://clmvhhm8t5i6t" path="res://Assets/garlic.png" id="2_cn3xy"]
+[ext_resource type="FontFile" uid="uid://bt2g0wncff3xn" path="res://Assets/LuckiestGuy-Regular.ttf" id="3_2fcgv"]
 [ext_resource type="AudioStream" uid="uid://bfq511d1ppjma" path="res://Assets/Saiki K Main Music..mp3" id="3_c7xwe"]
 
 [sub_resource type="GDScript" id="GDScript_ryxrj"]
@@ -21,6 +22,7 @@ script/source = "extends Node2D
 var time
 
 func _ready() -> void:
+	
 	if Globe.lives == 0:
 		get_tree().change_scene_to_file(\"res://scenes/defeat_screen.tscn\")
 
@@ -131,6 +133,7 @@ offset_top = 221.0
 offset_right = 1151.0
 offset_bottom = 280.0
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("3_2fcgv")
 theme_override_font_sizes/normal_font_size = 42
 text = "Level#"
 horizontal_alignment = 1
@@ -142,6 +145,7 @@ offset_top = 588.0
 offset_right = 1150.0
 offset_bottom = 647.0
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("3_2fcgv")
 theme_override_font_sizes/normal_font_size = 42
 text = "Lives:"
 horizontal_alignment = 1
@@ -153,6 +157,7 @@ offset_top = 518.0
 offset_right = 1150.0
 offset_bottom = 576.0
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("3_2fcgv")
 theme_override_font_sizes/normal_font_size = 42
 text = "0.0"
 horizontal_alignment = 1

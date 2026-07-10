@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://6r40ci8cdr7x"]
 
 [ext_resource type="PackedScene" uid="uid://dwkwuivxrn2ri" path="res://Scenes/player_paddle.tscn" id="1_wcvdo"]
+[ext_resource type="FontFile" uid="uid://bt2g0wncff3xn" path="res://Assets/LuckiestGuy-Regular.ttf" id="1_xea2i"]
 [ext_resource type="PackedScene" uid="uid://c4elgon040b5r" path="res://Scenes/robot_paddle.tscn" id="2_lrixb"]
 [ext_resource type="PackedScene" uid="uid://caoor6r5vwfy0" path="res://Scenes/ball.tscn" id="3_xea2i"]
 [ext_resource type="AudioStream" uid="uid://c6bf158gy3vwx" path="res://Assets/minigame4.mp3" id="4_lrixb"]
@@ -17,6 +18,10 @@ const KONAMI = [\"ui_up\", \"ui_up\", \"ui_down\", \"ui_down\", \"ui_left\", \"u
 var konami_index = 0
 
 func _ready():
+	
+	if Globe.lives == 0:
+		get_tree().change_scene_to_file(\"res://scenes/defeat_screen.tscn\")
+		
 	score_to_win = 5
 
 func _process(delta):
@@ -74,8 +79,10 @@ offset_bottom = 646.0
 color = Color(0, 0, 0, 1)
 
 [node name="ScoreLabel" type="RichTextLabel" parent="." unique_id=668614865]
+offset_top = 17.0
 offset_right = 1151.0
 offset_bottom = 46.0
+theme_override_fonts/normal_font = ExtResource("1_xea2i")
 theme_override_font_sizes/normal_font_size = 29
 text = "Score:"
 horizontal_alignment = 1

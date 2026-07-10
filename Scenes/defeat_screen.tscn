@@ -2,6 +2,23 @@
 
 [ext_resource type="Texture2D" uid="uid://dpsrurw4kfjqx" path="res://Assets/background5.jpg" id="1_0hunr"]
 [ext_resource type="AudioStream" uid="uid://dvpyljwj70vq4" path="res://Assets/lose.mp3" id="2_4a5bn"]
+[ext_resource type="FontFile" uid="uid://bt2g0wncff3xn" path="res://Assets/LuckiestGuy-Regular.ttf" id="3_2ekil"]
+
+[sub_resource type="GDScript" id="GDScript_2ekil"]
+resource_name = "reset"
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	
+	var minigames_done = 0 #track how many minigames done
+	var lives = 5 #track how many lives left, also effecting garlic appearing
+	var mario = true #tracks if user wants to use mario or luigi
+	var rollingBackground = true #stops whether background rolls or not
+	var flappy = true #tracks if user wants to use flappy bird or red
+	var botDifficulty = \"easy\"
+
+	get_tree().change_scene_to_file(\"res://Scenes/level_scene.tscn\") # back to intermission
+"
 
 [node name="defeat_screen" type="Node2D" unique_id=1727391105]
 
@@ -18,6 +35,7 @@ offset_top = 51.0
 offset_right = 1125.0
 offset_bottom = 202.0
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("3_2ekil")
 theme_override_font_sizes/normal_font_size = 57
 text = "Congratulations on FAILING the game"
 horizontal_alignment = 1
@@ -25,10 +43,11 @@ horizontal_alignment = 1
 [node name="RemainingLives" type="RichTextLabel" parent="." unique_id=1976044402]
 clip_contents = false
 offset_left = 169.0
-offset_top = 288.0
+offset_top = 295.0
 offset_right = 1318.0
-offset_bottom = 389.0
+offset_bottom = 348.0
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("3_2ekil")
 theme_override_font_sizes/normal_font_size = 47
 text = "Lives left: None you stink"
 horizontal_alignment = 1
@@ -36,3 +55,15 @@ horizontal_alignment = 1
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=2042854150]
 stream = ExtResource("2_4a5bn")
 autoplay = true
+
+[node name="resetButton" type="Button" parent="." unique_id=1221409779]
+offset_left = 638.0
+offset_top = 449.0
+offset_right = 845.0
+offset_bottom = 545.0
+theme_override_fonts/font = ExtResource("3_2ekil")
+theme_override_font_sizes/font_size = 49
+text = "Retry"
+script = SubResource("GDScript_2ekil")
+
+[connection signal="pressed" from="resetButton" to="resetButton" method="_on_pressed"]
