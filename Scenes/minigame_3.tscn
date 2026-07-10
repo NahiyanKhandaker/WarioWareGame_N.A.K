@@ -19,7 +19,7 @@ var started = false
 func _ready():
 	
 	if Globe.lives == 0:
-		get_tree().change_scene_to_file(\"res://scenes/defeat_screen.tscn\")
+		get_tree().change_scene_to_file(\"res://Scenes/defeat_screen.tscn\")
 		
 	$PipeTimer.connect(\"timeout\", _on_pipe_timer_timeout)
 	$Bird.alive = false

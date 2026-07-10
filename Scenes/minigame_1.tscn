@@ -22,7 +22,7 @@ var timer_end = false # boolean (true or false) stating whether the timer ended
 func _ready() -> void:
 	
 	if Globe.lives == 0:
-		get_tree().change_scene_to_file(\"res://scenes/defeat_screen.tscn\")
+		get_tree().change_scene_to_file(\"res://Scenes/defeat_screen.tscn\")
 	
 	if Globe.mario == false:
 		$Player/Sprite2D.texture = preload(\"res://Assets/luigi.png\")
