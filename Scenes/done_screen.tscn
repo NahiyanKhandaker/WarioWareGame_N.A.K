@@ -35,7 +35,7 @@ func _on_pressed() -> void:
 	Globe.botDifficulty = \"easy\" #sets difficulty of pong bot
 	Globe.muted = false #to ensure music/SFX on or off
 	
-	get_tree().change_scene_to_file(\"res://Scenes/title_scene.tscn\") # back to intermission
+	get_tree().change_scene_to_file(\"res://Scenes/title_screen.tscn\") # back to intermission
 "
 
 [node name="done_screen" type="Node2D" unique_id=2084015923]
