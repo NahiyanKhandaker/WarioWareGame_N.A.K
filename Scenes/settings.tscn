@@ -19,6 +19,10 @@ script/source = "extends Node2D
 @onready var easyButton: Button = $easy
 @onready var mediumButton: Button = $medium
 @onready var hardButton: Button = $hard
+
+@onready var muteButton: Button = $Mute
+@onready var unmuteButton: Button = $Unmute
+
 func _ready() -> void:
 	pass
 
@@ -59,7 +63,12 @@ func _process(delta: float) -> void:
 		mediumButton.modulate = Color(\"ff5342ff\")
 		hardButton.modulate = Color(\"89f252\")
 
-			
+	if Globe.muted == true:
+		muteButton.modulate = Color(\"89f252\")
+		unmuteButton.modulate = Color(\"ff5342ff\")
+	else:
+		muteButton.modulate = Color(\"ff5342ff\")
+		unmuteButton.modulate = Color(\"89f252\")			
 
 
 func _on_button_pressed() -> void:
@@ -112,6 +121,26 @@ script/source = "extends Button
 
 func _on_pressed() -> void:
 	Globe.flappy = false
+"
+
+[sub_resource type="GDScript" id="GDScript_we0jk"]
+resource_name = "unmuteSound"
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	
+	AudioServer.set_bus_mute(0, false)
+	Globe.muted = false
+"
+
+[sub_resource type="GDScript" id="GDScript_j2dne"]
+resource_name = "muteSound"
+script/source = "extends Button
+
+func _on_pressed() -> void:
+	
+	AudioServer.set_bus_mute(0, true)
+	Globe.muted = true
 "
 
 [sub_resource type="GDScript" id="GDScript_6vr2p"]
@@ -167,6 +196,7 @@ text = "Settings"
 horizontal_alignment = 1
 
 [node name="charSelect" type="RichTextLabel" parent="." unique_id=2134343756]
+clip_contents = false
 offset_left = 4.0
 offset_top = 123.0
 offset_right = 1153.0
@@ -177,6 +207,7 @@ theme_override_font_sizes/normal_font_size = 40
 text = "Character Select (Minigame 1):"
 
 [node name="charSelect3" type="RichTextLabel" parent="." unique_id=752213735]
+clip_contents = false
 offset_left = 2.0
 offset_top = 296.99994
 offset_right = 1151.0
@@ -187,6 +218,7 @@ theme_override_font_sizes/normal_font_size = 40
 text = "Character Select (Minigame 3):"
 
 [node name="botDifficulty" type="RichTextLabel" parent="." unique_id=113150955]
+clip_contents = false
 offset_left = 1.0
 offset_top = 382.0
 offset_right = 1150.0
@@ -196,7 +228,19 @@ theme_override_fonts/normal_font = ExtResource("1_i44u3")
 theme_override_font_sizes/normal_font_size = 40
 text = "Bot Difficulty: (Minigame 4):"
 
+[node name="botDifficulty2" type="RichTextLabel" parent="." unique_id=1075242787]
+clip_contents = false
+offset_left = 2.0
+offset_top = 445.0
+offset_right = 1151.0
+offset_bottom = 546.0
+theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("1_i44u3")
+theme_override_font_sizes/normal_font_size = 40
+text = "Sound: "
+
 [node name="movingBg" type="RichTextLabel" parent="." unique_id=711341282]
+clip_contents = false
 offset_top = 212.99995
 offset_right = 1149.0
 offset_bottom = 313.99994
@@ -264,6 +308,26 @@ theme_override_fonts/font = ExtResource("1_i44u3")
 theme_override_font_sizes/font_size = 29
 text = "Back"
 
+[node name="Unmute" type="Button" parent="." unique_id=578772574]
+offset_left = 145.0
+offset_top = 431.0
+offset_right = 271.0
+offset_bottom = 493.0
+theme_override_fonts/font = ExtResource("1_i44u3")
+theme_override_font_sizes/font_size = 29
+text = "Unmute"
+script = SubResource("GDScript_we0jk")
+
+[node name="Mute" type="Button" parent="." unique_id=1508180097]
+offset_left = 300.0
+offset_top = 431.0
+offset_right = 426.0
+offset_bottom = 493.0
+theme_override_fonts/font = ExtResource("1_i44u3")
+theme_override_font_sizes/font_size = 29
+text = "Mute"
+script = SubResource("GDScript_j2dne")
+
 [node name="Luigi" type="Button" parent="." unique_id=576794111]
 offset_left = 785.0
 offset_top = 106.0
@@ -314,6 +378,8 @@ autoplay = true
 [connection signal="pressed" from="hard" to="hard" method="_on_pressed"]
 [connection signal="pressed" from="Red" to="Red" method="_on_pressed"]
 [connection signal="pressed" from="BackButton" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Unmute" to="Unmute" method="_on_pressed"]
+[connection signal="pressed" from="Mute" to="Mute" method="_on_pressed"]
 [connection signal="pressed" from="Luigi" to="Luigi" method="_on_pressed"]
 [connection signal="pressed" from="Mario" to="Mario" method="_on_pressed"]
 [connection signal="pressed" from="OffButton" to="OffButton" method="_on_pressed"]

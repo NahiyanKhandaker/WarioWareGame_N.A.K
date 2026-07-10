@@ -325,11 +325,12 @@ position = Vector2(2, -6)
 shape = SubResource("CircleShape2D_ryxrj")
 
 [node name="minigameTimer" parent="." unique_id=1173395646 instance=ExtResource("4_o6yob")]
-position = Vector2(879, -137)
+position = Vector2(879, -130)
 
 [node name="GarlicCounter" type="RichTextLabel" parent="." unique_id=1703311101]
-offset_top = -1.0
-offset_right = 1153.0
+clip_contents = false
+offset_top = 17.0
+offset_right = 1154.0
 offset_bottom = 65.0
 theme_override_constants/outline_size = 9
 theme_override_fonts/normal_font = ExtResource("5_0uv5o")

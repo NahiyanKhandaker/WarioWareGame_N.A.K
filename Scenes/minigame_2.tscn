@@ -74,7 +74,7 @@ offset_bottom = 980.0
 texture = ExtResource("1_l4g8r")
 
 [node name="minigameTimer" parent="." unique_id=1173395646 instance=ExtResource("3_l4g8r")]
-position = Vector2(881, -137)
+position = Vector2(881, -130)
 
 [node name="GarlicClickedCounter" type="RichTextLabel" parent="." unique_id=821878135]
 clip_contents = false

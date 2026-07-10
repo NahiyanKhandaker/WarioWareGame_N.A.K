@@ -6,3 +6,4 @@ var mario = true #tracks if user wants to use mario or luigi
 var rollingBackground = true #stops whether background rolls or not
 var flappy = true #tracks if user wants to use flappy bird or red
 var botDifficulty = "easy" #sets difficulty of pong bot
+var muted = false #to ensure music/SFX on or off
