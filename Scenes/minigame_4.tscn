@@ -61,6 +61,7 @@ func win():
 
 func lose():
 	Globe.lives -= 1
+	Globe.minigames_done -= 1
 	get_tree().change_scene_to_file(\"res://Scenes/level_scene.tscn\")
 "
 
