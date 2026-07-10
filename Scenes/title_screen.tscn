@@ -38,18 +38,21 @@ offset_bottom = 613.0
 [node name="Start" type="Button" parent="VBoxContainer" unique_id=2118973093]
 layout_mode = 2
 theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("2_p3fck")
 theme_override_font_sizes/font_size = 26
 text = "Start Game"
 
 [node name="Settings" type="Button" parent="VBoxContainer" unique_id=2067210817]
 layout_mode = 2
 theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("2_p3fck")
 theme_override_font_sizes/font_size = 26
 text = "Settings"
 
 [node name="Quit" type="Button" parent="VBoxContainer" unique_id=574048775]
 layout_mode = 2
 theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("2_p3fck")
 theme_override_font_sizes/font_size = 26
 text = "Quit"
 

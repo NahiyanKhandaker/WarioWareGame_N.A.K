@@ -18,9 +18,6 @@ const KONAMI = [\"ui_up\", \"ui_up\", \"ui_down\", \"ui_down\", \"ui_left\", \"u
 var konami_index = 0
 
 func _ready():
-	
-	if Globe.lives == 0:
-		get_tree().change_scene_to_file(\"res://Scenes/defeat_screen.tscn\")
 		
 	score_to_win = 5
 

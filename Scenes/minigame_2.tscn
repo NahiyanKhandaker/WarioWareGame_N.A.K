@@ -20,9 +20,6 @@ var timer_end = false
 var game_over = false
 
 func _ready() -> void:
-	
-	if Globe.lives == 0:
-		get_tree().change_scene_to_file(\"res://Scenes/defeat_screen.tscn\")
 			
 	await themed_timer.Timer(7.0)
 	timer_end = true

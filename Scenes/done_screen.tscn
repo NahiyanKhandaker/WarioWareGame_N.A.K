@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c5m103cffgewc"]
 
 [ext_resource type="Texture2D" uid="uid://doxaqcg7ysi20" path="res://Assets/background4.jpg" id="1_en6tx"]
+[ext_resource type="FontFile" uid="uid://bt2g0wncff3xn" path="res://Assets/LuckiestGuy-Regular.ttf" id="2_1q1k2"]
 [ext_resource type="AudioStream" uid="uid://cmy6xq7dh1ubt" path="res://Assets/win.mp3" id="2_3rr80"]
 
 [sub_resource type="GDScript" id="GDScript_ihae0"]
@@ -35,16 +36,18 @@ offset_top = 392.0
 offset_right = 1150.0
 offset_bottom = 493.0
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("2_1q1k2")
 theme_override_font_sizes/normal_font_size = 57
 text = "Congratulations on completing the game"
 horizontal_alignment = 1
 
 [node name="RemainingLives" type="RichTextLabel" parent="." unique_id=250411786]
-offset_left = 2.0
-offset_top = 485.0
-offset_right = 1151.0
-offset_bottom = 586.0
+offset_left = 5.0
+offset_top = 544.0
+offset_right = 1154.0
+offset_bottom = 645.0
 theme_override_constants/outline_size = 9
+theme_override_fonts/normal_font = ExtResource("2_1q1k2")
 theme_override_font_sizes/normal_font_size = 47
 text = "Lives left: "
 horizontal_alignment = 1
